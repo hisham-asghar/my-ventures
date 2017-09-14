@@ -1,0 +1,59 @@
+﻿@{
+    ViewBag.Title = "Downloads";
+    ViewBag.CustomHeaderClass = "navbar-static-top";
+    ViewBag.UploadLocation = MYVentures.Helpers.CustomActions.GetUploadLocation();
+}
+
+<!-- ========== Page Title ========== -->
+<header class="page-title">
+    <div class="container">
+        <div class="row">
+            <h1 class="col-sm-6">Downloads</h1>
+        </div>
+    </div>
+</header>
+
+<style>
+    .t-image {
+        height: 100% !important;
+    }
+
+    .t-item {
+        margin-bottom: 10px;
+    }
+</style>
+@model List<DBLayer.File>
+<!-- ========== Team - 3 columns ========== -->
+
+<div class="gray-bg">
+    <section class="container section team-3col">
+        <div class="row">
+            <!-- Member 1 -->
+            @foreach (var map in Model)
+            {
+                <div class="col-lg-4 col-md-6 mb-sm-50">
+                    <div class="t-item">
+
+                        <!-- Info -->
+                        <div class="t-info">
+                            <h4 class="t-name">
+                                @map.mimeType
+
+                            </h4>
+                            <p>
+                                @map.Description
+                            </p>
+                            <ul class="social-links">
+                                <li>
+                                    <a href="@ViewBag.UploadLocation@map.FileName" download=""><i class="fa fa-download"></i></a>
+                                </li>
+                            </ul>
+                        </div>
+
+                    </div><!-- / .t-item -->
+                </div><!-- / .col-md-4 -->            <!-- Member 1 -->
+
+            }
+        </div><!-- / .row -->
+    </section><!-- / .contianer -->
+</div><!-- / .gray-bg -->

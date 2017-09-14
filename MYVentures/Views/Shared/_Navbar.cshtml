@@ -1,0 +1,187 @@
+﻿@using DAOLayer
+
+<style>
+    .main-custom-header.navbar .navbar-nav li.dropdown ul li a {
+        color: #eee !important;
+        font-weight: bold;
+    }
+
+    .main-custom-header.navbar:not(.navbar-trans) .navbar-nav > li > a {
+        color: #eee !important;
+        font-weight: bold;
+    }
+    
+    .main-custom-header ul.main-navbar-nav > li > a {
+        padding:15px !important;
+    }
+    
+    .main-custom-header .about-box {
+        color: #eee !important;
+        
+    }
+    .learn-more-btn-header:hover{
+        background:rgba(255, 0, 0, 0.59) !important;
+    }
+    .main-custom-header .about-box h4 {
+        color: #eee !important;
+        font-weight: bold;
+        
+    }
+    .main-custom-header .about-box a.btn {
+        color: #eee !important;
+        background: #777;
+        
+    }
+    
+    .main-custom-header.navbar.navbar-trans .navbar-nav > li > a {
+        color: #EEE !important;
+        font-weight: bold;
+    }
+
+    .main-custom-header.navbar .navbar-nav .dropdown .dropdown-menu {
+        background: linear-gradient(to left, rgba(56, 58, 56, 0.39), rgba(56, 58, 56, 0.89));
+        border:0;
+    }
+
+    .main-custom-header.navbar .navbar-nav .dropdown .dropdown-menu li a:hover {
+        border-left-color: #ff0000 !important;
+        border-left-color: rgba(255, 0, 0, 0.80) !important;
+    }
+
+    .main-custom-header.navbar {
+        background: #3a383a !important;
+        background: rgba(58, 56, 58, 0.5) !important;
+        border:0;
+    }
+
+    .main-custom-header.navbar-trans {
+        background: transparent !important;
+        border-bottom: 0;
+    }
+    
+    .main-custom-header.navbar.navbar-trans .navbar-nav > li > a:hover,
+    .main-custom-header .navbar-nav > li > a:hover {
+        color: #FF3C3C !important;
+        zoom:110% !important;
+    }
+</style>
+<nav class="main-custom-header navbar navbar-default @(ViewBag.CustomHeaderClass == null ? "navbar-fixed-top" : ViewBag.CustomHeaderClass) mega navbar-trans navbar-trans-dark trans-helper">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <!-- Logo -->
+            <a class="navbar-brand" href="index.html">
+                <img src="/Content/assets/images/logo.png" alt="MY Ventures">
+            </a>
+        </div><!-- / .navbar-header -->
+        <!-- Navbar Links -->
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav main-navbar-nav navbar-right">
+                <!-- Home -->
+
+                <li>
+                    <a href="/">
+                        <i class="fa fa-home fa-2x"></i>
+                    </a>
+                </li>
+                <li class="hide">
+                    <a href="/Home/About">
+                        About
+                    </a>
+                </li>
+                <!-- About -->
+                <li class="dropdown mega-fw">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="350" role="button" aria-haspopup="true" aria-expanded="false">
+                        About
+                    </a>
+                    <ul class="dropdown-menu">
+                        <div class="row">
+                            <!-- Multi Page -->
+                            <div class="col-md-4">
+
+                                <div class="col-md-10">
+                                    <li>
+                                        <a href="@Url.Action("ceo-message","About")" target="_blank">
+                                            CEO’s Message
+                                        </a>
+                                    </li>
+                                    <li role="separator" class="divider"></li>
+                                    <li>
+                                        <a href="/Home/Team" target="_blank">
+                                            Management team
+                                        </a>
+                                    </li>
+                                    <li role="separator" class="divider"></li>
+                                    <li>
+                                        <a href="@Url.Action("History","About")" target="_blank">
+                                            History
+                                        </a>
+                                    </li>
+                                    <li role="separator" class="divider"></li>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-sm-30 about-box" style="border-left:1px solid; text-shadow: 2px 2px 1px #222;">
+                                <a href="/Home/About" class="post-title">
+                                    <h4>
+                                        About MY Properties
+                                    </h4>
+                                </a>
+                                <!-- Blurb -->
+                                <p>
+                                    @(SiteMetaDAO.getMeta("about_small").MetaText ?? "")
+                                </p>
+                                <!-- Link -->
+                                <a href="/Home/About" class="btn btn-small learn-more-btn-header">Learn More</a>
+                            </div>
+                            <!-- Onepage -->
+                            <div class="col-md-4 mb-sm-30">
+                                <div class="img-wrapper">
+                                    <img src="https://www.damacproperties.com/sites/all/themes/damac/images/why-damac.jpg"
+                                         alt="Blog Post 1" style="    box-shadow: 1px 1px 4px 1px #3a383a;">
+                                </div>
+                            </div>
+                        </div><!-- / .row -->
+                    </ul><!-- / .dropdown-menu -->
+                </li>
+                <li>
+                    <a href="/Homes">
+                        MY Homes
+                    </a>
+                </li>
+                <li>
+                    <a href="/Lands">
+                        MY Lands
+                    </a>
+                </li>
+                <li>
+                    <a href="/Plots">
+                        MY Plots
+                    </a>
+                </li>
+                <li>
+                    <a href="/Maps">
+                        MY Maps
+                    </a>
+                </li>
+                <li>
+                    <a href="/Downloads">
+                        Downloads
+                    </a>
+                </li>
+                <!-- Search -->
+
+                <li>
+                    <a href="#">
+                        <i class="fa fa-search fa-2x"></i>
+                    </a>
+                </li>
+                <!-- / About -->
+            </ul><!-- / .nav .navbar-nav -->
+        </div><!--/.navbar-collapse -->
+    </div><!-- / .container -->
+</nav><!-- / .navbar -->

@@ -1,0 +1,212 @@
+﻿@{
+    
+    ViewBag.Title = ViewBag.BarType;
+    ViewBag.CustomHeaderClass = "navbar-static-top";
+    ViewBag.UploadLocation = MYVentures.Helpers.CustomActions.GetUploadLocation();  
+}
+@model List<DBLayer.PropertyView>
+
+    <style>
+        .cd-words-wrapper {
+            width: 100% !important;
+            text-align: left !important;
+        }
+        .gm-style-iw img{
+            width:300px;
+        }
+        .blog-post .bp-content {
+            padding: 40px 20px 50px 20px !important;
+        }
+        .priceLabel {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 0.8px;
+            z-index: 101;
+        }
+        .label-default {
+            color: #fff !important;
+        }
+    </style>
+
+    <!-- ========== Page Title ========== -->
+    <header class="page-title" style="padding-top: 5px; padding-bottom: 20px;">
+        <div class="container shop-sidebar">
+            <form method="post">
+                <div class="row">
+                    <h1 class="col-sm-4">@ViewBag.PageType</h1>
+
+                    <div class="col-md-4 shop-widget mb-sm-50">
+                        <!-- Price Filter -->
+                        <div class="filter-widget mb-50">
+                        
+                            <h5 class="header-widget">
+                                Filter by Price
+                                <span class="text-right">
+                                    <button type="submit" class="btn btn-light btn-small"><i class="fa fa-2x fa-refresh"></i></button>
+                                </span>
+                            </h5>
+                            <div id="shop-slider-range"></div>
+                            <p>
+                                <label for="amount" >From:</label>
+                                <input type="text" name="priceFilter" style="background: #f4f4f4; width: 80%; font-weight: bold;" smin="@ViewBag.SPriceMin" smax="@ViewBag.SPriceMax" max="@ViewBag.PriceMax" id="shop-slider-range-amount">
+                                <input type="hidden" name="smin" value="@ViewBag.SPriceMin" id="SPriceMin" />
+                                <input type="hidden" name="smax" value="@ViewBag.SPriceMax" id="SPriceMax" />
+                            </p>
+                        </div><!-- / .filter-widget -->
+                    </div>
+                
+
+                    <div class="col-md-3 shop-widget">
+                        <!-- Search Widget -->
+                        <div class="search-widget mb-sm-50">
+                            <div class="form-group">
+                                <input type="search" name="search" value="@ViewBag.searchKeyword" placeholder="Search ..." class="form-control">
+                                <button class="inside-input-btn"><i class="fa fa-search"></i></button>
+                            </div>
+                        </div><!-- / .search-widget -->
+
+                    </div>
+                </div>
+            </form>
+        </div>
+    </header>
+
+
+    <!-- ========== Contact ========== -->
+    <section class="section" style="padding-top:0; padding-bottom: 0;">
+        <div class="row">
+        </div>
+        <div class="contact-wrapper">
+            <!-- Map -->
+            <h1 class="text-center" style="margin:100px 0px;">Map View</h1>
+            <div id="map-canvas" class="gmap map-boxed"></div>
+        </div><!-- / .contact-wrapper -->
+    </section><!-- / .contact-1 -->
+
+
+    <div class="gray-bg">
+        <section id="blog" class="section container blog-columns blog-preview" style="padding-top: 80px; min-height: 100vh;">
+            <div class="row">
+
+                <header class="sec-heading" style="margin-bottom: 20px;">
+                    <h2>@ViewBag.PageType</h2>
+                    <span class="subheading">Check out the list Version</span>
+
+                </header>
+            </div>
+            <div class="row">
+                <ul id="pfolio-filters" class="portfolio-filters">
+                    <li class="active"><a href="#" data-filter="*">All</a></li>
+                    @foreach (var tag in ViewBag.propertyTypeTags)
+                    {
+                        <li><a href="#" data-filter='.@("PropertyTypeId" + tag.PropertyTypeId)'>@tag.TypeName</a></li>
+                    }
+                </ul>
+            </div>
+            <div class="row">
+                <div id="pfolio">
+                    @if (Model.Count == 0)
+                    {
+                        <p>No record.</p>
+                    }
+                    @foreach (var pro in Model)
+                    {
+                        <div class="col-lg-4 col-md-6 mb-sm-50 @("PropertyTypeId" + pro.PropertyTypeId)">
+                            <div longitude="@pro.Logitude" latitude="@pro.Latitude" class="home-post blog-post wow fadeInUp" data-wow-duration="2s" data-wow-delay=".3s">
+                                <!-- Image -->
+                                <a href="#" class="post-img">
+                                    @if (pro.Price > 0)
+                                    {
+                                        <span class="label label-default priceLabel " style="top: 15px;">
+                                            Rs. @(Math.Round(pro.Price, 2)) @pro.PriceUnitName
+                                        </span>
+                                    }
+                                    <img src="@ViewBag.UploadLocation@pro.Banner" style="width: 100%;" alt="Blog Post 1">
+                                </a>
+                                <div class="bp-content">
+                                    <!-- Post Title -->
+                                    <a href="#" class="post-title">
+                                        <h4>
+                                            @pro.Title
+                                        </h4>
+                                    </a>
+                                    <!-- Blurb -->
+                                    <p>
+                                        @pro.StreetName, @pro.CityName
+                                    </p>
+                                    <!-- Link -->
+                                    <a href="/MYHomes/Detail/@pro.guid" class="btn btn-small">Learn More</a>
+                                </div><!-- / .bp-content -->
+                            </div><!-- / .blog-post -->
+                        </div><!-- / .col-lg-4 -->
+                    }
+                </div>
+
+            </div><!-- / .row -->
+        </section><!-- / .container -->
+    </div><!-- / .gray-bg -->
+
+    @section scripts
+    {
+        <script>
+            var myLatlng = new google.maps.LatLng(31.4640581, 74.3859547);
+            var mapOptions = {
+                zoom: 13,
+                center: myLatlng,
+                scrollwheel: false, //we disable de scroll over the map, it is a really annoing when you scroll through page
+
+                // Styling of the map in JSON object
+                styles: [{"featureType":"administrative","elementType":"labels.text.fill","stylers":[{"color":"#444444"}]},{"featureType":"landscape","elementType":"all","stylers":[{"color":"#f2f2f2"}]},{"featureType":"poi","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"road","elementType":"all","stylers":[{"saturation":-100},{"lightness":45}]},{"featureType":"road.highway","elementType":"all","stylers":[{"visibility":"simplified"}]},{"featureType":"road.arterial","elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"featureType":"transit","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"water","elementType":"all","stylers":[{"color":"#cdd2d4"},{"visibility":"on"}]}]
+            };
+
+            var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+
+            var marker = new google.maps.Marker({
+                position: myLatlng,
+                icon: '/Content/MY/My.png',
+                title: "MY Ventures"
+            });
+
+            marker.setMap(map);
+
+            var list = $(".home-post");
+            //list.push();
+            //list.push(new google.maps.LatLng(31.463388, 74.394052));
+            //list.push(new google.maps.LatLng(31.470047, 74.438861));
+            for (var x = 0; x<list.length; x++)
+            {
+                var lat = parseFloat($(list[x]).attr("latitude"));
+                var lng = parseFloat($(list[x]).attr("longitude"));
+                var latlng = new google.maps.LatLng(lat, lng)
+                var marker2 = new google.maps.Marker({
+                    position: latlng,
+                    dragable:true,
+                    icon: '/Content/MY/MY_Custom.png',
+                    title: "Map!"
+                });
+
+                debugger;
+                var contentString = '<div>' + $(list[x]).html() + '</div>';
+
+                var infowindow = new google.maps.InfoWindow({
+                    content: contentString
+                });
+
+                marker2.setMap(map);
+
+                marker2.addListener('mouseover', function () {
+                    infowindow.open(map, this);
+                });
+                marker2.addListener('mouseout', function () {
+                    //setTimeout(infowindow.close(), 5000);
+                });
+
+
+            }
+
+        </script>
+
+    }
