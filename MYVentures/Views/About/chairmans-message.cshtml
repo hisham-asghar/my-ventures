@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "Chairman's message";
+    ViewBag.Title = "CEO's Message";
     var UploadLocation = MYVentures.Helpers.CustomActions.GetUploadLocation();  
 }
 @model CustomModels.CeoModel
@@ -28,7 +28,8 @@
                 <img class="img-responsive post-img" alt="CEO's Image" style="width: 100%;"
                      src="@(string.IsNullOrWhiteSpace(Model.image.MetaText) ? "http://placehold.it/850x500" : UploadLocation+"/"+Model.image.MetaText)">
                 
-                <div class="blog-post-content">                    @Html.Raw(Model.message.MetaText.Contains("\n") ? Model.message.MetaText.Replace("\n", "<br />") : Model.message.MetaText)
+                <div class="blog-post-content">
+                    @Html.Raw(Model.message.MetaText.Contains("\n") ? Model.message.MetaText.Replace("\n", "<br />") : Model.message.MetaText)
                     <br /><br />
                     <footer>
                         <cite style="font-weight: bold;">@Model.name.MetaText</cite>
@@ -53,9 +54,6 @@
                     </ul>
                 </div><!-- / .p-table -->
             </div>
-                  
-
-                  
         </div>
     </div>
 </section><!-- / .container -->

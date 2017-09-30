@@ -35,11 +35,13 @@ namespace DAOLayer
         {
             using (var db = new Model())
             {
-                var list = new List<int>();
+                var list = new List<Property>();
                 if(LocationId > 0)
                 {
                     var loc = db.Locations.FirstOrDefault(l => l.LocationId == LocationId);
-                    list = db.Locations.Where(l => l.StreetName.ToLower().Trim() == loc.StreetName.ToLower().Trim()).Select(l => l.Properties.FirstOrDefault()).ToList();
+                    var data_location = db.Locations.Where(l => l.StreetName.ToLower().Trim() == loc.StreetName.ToLower().Trim());
+                    list = data_location.Select(l => l.Properties.FirstOrDefault()).ToList();
+                    
                 }
                 else if(CityId > 0)
                 {
@@ -53,7 +55,8 @@ namespace DAOLayer
                 {
                     return new List<PropertyView>();
                 }
-                return db.PropertyViews.Where(p => list.Any(lp => lp == p.PropertyId)).ToList();
+
+                return db.PropertyViews.Where(p => list.Any(lp => lp.PropertyId == p.PropertyId)).ToList();
             }
         }
     }
