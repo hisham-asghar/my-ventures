@@ -9,6 +9,7 @@ using DAOLayer;
 
 namespace MYVentures.Controllers
 {
+    [Attributes.GZipOrDeflate]
     public class MapsController : Controller
     {
         //

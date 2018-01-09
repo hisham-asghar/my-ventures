@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.30501.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MYVentures", "MYVentures\MYVentures.csproj", "{8EC5E8BC-D6F2-4E69-A3AF-9EA668EBD481}"
 EndProject
@@ -12,6 +12,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Admin", "Admin\Admin.csproj", "{45C3F8D5-C69C-4FD1-BFB7-926D7430E561}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomModels", "CustomModels\CustomModels.csproj", "{F8A61375-AA86-48AF-AB9A-F1BDF94C85CD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{212BAA28-200C-4835-879C-3B1EF26B22FC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{F8A61375-AA86-48AF-AB9A-F1BDF94C85CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F8A61375-AA86-48AF-AB9A-F1BDF94C85CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F8A61375-AA86-48AF-AB9A-F1BDF94C85CD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{212BAA28-200C-4835-879C-3B1EF26B22FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{212BAA28-200C-4835-879C-3B1EF26B22FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{212BAA28-200C-4835-879C-3B1EF26B22FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{212BAA28-200C-4835-879C-3B1EF26B22FC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

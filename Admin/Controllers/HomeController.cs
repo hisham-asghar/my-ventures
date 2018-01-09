@@ -33,7 +33,7 @@ namespace Admin.Controllers
                 int i = 1;
                 foreach (var section in list)
                 {
-                    var img = saveImage(section.img);
+                    var img = SaveImage(section.img);
                     if (img != null)
                     {
                         SiteMetaDAO.SaveMeta(new Meta()
@@ -75,12 +75,12 @@ namespace Admin.Controllers
             ViewBag.img2 = CustomModels.Helper.getDicData(listSection, "section_Exclusive_2_img");
             ViewBag.head2 = CustomModels.Helper.getDicData(listSection, "section_Exclusive_2_head");
             ViewBag.text2 = CustomModels.Helper.getDicData(listSection, "section_Exclusive_2_text");
-            ViewBag.link2 = CustomModels.Helper.getDicData(listSection, "section_Exclusive_1_link");
+            ViewBag.link2 = CustomModels.Helper.getDicData(listSection, "section_Exclusive_2_link");
 
             ViewBag.img3 = CustomModels.Helper.getDicData(listSection, "section_Exclusive_3_img");
             ViewBag.head3 = CustomModels.Helper.getDicData(listSection, "section_Exclusive_3_head");
             ViewBag.text3 = CustomModels.Helper.getDicData(listSection, "section_Exclusive_3_text");
-            ViewBag.link3 = CustomModels.Helper.getDicData(listSection, "section_Exclusive_1_link");
+            ViewBag.link3 = CustomModels.Helper.getDicData(listSection, "section_Exclusive_3_link");
 
             return View();
         }
@@ -97,7 +97,7 @@ namespace Admin.Controllers
 
                 var section = model;
 
-                var img = saveImage(section.img);
+                var img = SaveImage(section.img);
                 if (img != null)
                 {
                     SiteMetaDAO.SaveMeta(new Meta()
@@ -141,7 +141,7 @@ namespace Admin.Controllers
                 int i = 1;
                 foreach(var section in list)
                 {
-                    var img = saveImage(section.img);
+                    var img = SaveImage(section.img);
                     if(img != null)
                     {
                         SiteMetaDAO.SaveMeta(new Meta()
@@ -240,24 +240,23 @@ namespace Admin.Controllers
             return View();
         }
 
-        private string saveImage(HttpPostedFileBase pic)
+        private string SaveImage(HttpPostedFileBase pic)
         {
-            if (pic != null && pic.ContentLength > 0)
+            if (pic == null || pic.ContentLength <= 0) return null;
+
+            try
             {
-                try
-                {
-                    var fileName = Guid.NewGuid() + ".jpg";
-                    var path = Path.Combine(Server.MapPath("~/uploads"), fileName);
-                    pic.SaveAs(path);
-                    return fileName;
-                }
-                catch (Exception)
-                {
-                    return null;
-                }
+                if (!pic.ContentType.Contains("image/")) return null;
+
+                var fileName = Guid.NewGuid() + "." + pic.ContentType.Substring(6);
+                var path = Path.Combine(Server.MapPath("~/uploads"), fileName);
+                pic.SaveAs(path);
+                return fileName;
             }
-            else
+            catch (Exception)
+            {
                 return null;
+            }
         }
 
 
@@ -284,8 +283,8 @@ namespace Admin.Controllers
 
             return View();
         }
-
-        public ActionResult CeoMessage(HttpPostedFileBase img)
+        [ValidateInput(false)]
+        public ActionResult CeoMessage(HttpPostedFileBase img,string ceo_message)
         {
             if (Request.HttpMethod == "POST")
             {
@@ -296,7 +295,7 @@ namespace Admin.Controllers
                 ViewBag.message = SiteMetaDAO.SaveMeta(new Meta()
                 {
                     MetaName = "ceo_message",
-                    MetaText = Request.Form["ceo_message"]
+                    MetaText = ceo_message
                 }, parents);
 
                 ViewBag.name = SiteMetaDAO.SaveMeta(new Meta()
@@ -317,28 +316,30 @@ namespace Admin.Controllers
                     MetaText = Request.Form["ceo_email"]
                 }, parents);
 
-                var imageStr = saveImage(img);
-                ViewBag.image = SiteMetaDAO.SaveMeta(new Meta()
+                var imageStr = SaveImage(img);
+                if (!string.IsNullOrWhiteSpace(imageStr))
                 {
-                    MetaName = "ceo_image",
-                    MetaText = imageStr
-                }, parents) ?? new Meta()
-                {
+                    ViewBag.image = SiteMetaDAO.SaveMeta(new Meta()
+                    {
+                        MetaName = "ceo_image",
+                        MetaText = imageStr
+                    }, parents) ?? new Meta()
+                    {
 
-                    MetaName = "ceo_image",
-                    MetaText = imageStr
-                };
+                        MetaName = "ceo_image",
+                        MetaText = imageStr
+                    };
+                }
+                
             }
-            else
-            {
-                var mainMetas = SiteMetaDAO.getMetaChilds("CEO");
+            var mainMetas = SiteMetaDAO.getMetaChilds("CEO");
 
-                ViewBag.image = Helper.getDicData(mainMetas, "ceo_image");
-                ViewBag.email = Helper.getDicData(mainMetas, "ceo_email");
-                ViewBag.name = Helper.getDicData(mainMetas, "ceo_name");
-                ViewBag.message = Helper.getDicData(mainMetas, "ceo_message");
-                ViewBag.phone = Helper.getDicData(mainMetas, "ceo_phone");
-            }
+            ViewBag.image = Helper.getDicData(mainMetas, "ceo_image");
+            ViewBag.email = Helper.getDicData(mainMetas, "ceo_email");
+            ViewBag.name = Helper.getDicData(mainMetas, "ceo_name");
+            ViewBag.message = Helper.getDicData(mainMetas, "ceo_message");
+            ViewBag.phone = Helper.getDicData(mainMetas, "ceo_phone");
+            
             return View();
         }
     }

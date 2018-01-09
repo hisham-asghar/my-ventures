@@ -1,51 +1,10 @@
 ﻿@{
     ViewBag.Title = "Home";
-    ViewBag.UploadLocation = MYVentures.Helpers.CustomActions.GetUploadLocation();    
+    ViewBag.UploadLocation = MYVentures.Helpers.CustomActions.GetUploadLocation();
+    ViewBag.MainClass = "main_landing";
 }
-<script>
-    var kenburn = true;
-    function initKenburn() {
-        var hasKenburns = $('.kenburn-hero')[0];
-        if (hasKenburns) {
-
-            var wHeight = $(window).height();
-            var w_width = $(window).width();
-
-            $('.kenburns').attr('width', w_width);
-            $('.kenburns').attr('height', wHeight);
-            $('.kenburns').kenburns({
-                images: @Html.Raw(ViewBag.imgList),
-                frames_per_second: 50,
-                display_time: 8400,
-                fade_time: 1000,
-                zoom: 1,
-                background_color: '#000000'
-            });
-        }
-
-    } // initKenburns
-
-</script>
-<style>
-    .cd-words-wrapper {
-        width: 100% !important;
-        text-align: left !important;
-    }
-
-    .cd-words-wrapper b{
-        font-size: 30% !important;
-        letter-spacing: 5px;
-    }
-
-    .cd-words-wrapper b > p{
-        font-weight: 100;
-        padding-top: 15px;
-        letter-spacing: 4px;
-        font-size: 20px;
-    }
-</style>
    <!-- ========== Hero Cover ========== -->
-<div class="kenburn-hero animated-hero">
+<div class="kenburn-hero animated-hero" image-data="@Html.Raw(ViewBag.imgList)">
     <div class="kenburn-slider bg-overlay">
 
         <!-- Heading -->
@@ -86,23 +45,15 @@
         <header class="sec-heading">
             <h2>Welcome to MY Ventures</h2>
             <span class="subheading">@ViewBag.Whead.MetaText</span>
-        </header>
-        
+        /</header>
+        <div class="col-md-offset-2 col-md-8 text-center ws-m">@Html.Raw(ViewBag.Wtext.MetaText)</div>
         <div class="col-md-12">
-            <div style="position: absolute; z-index: 10; color: white; margin-top: 10vh; font-weight: bold;">
-                <div class="col-md-offset-1 col-md-10 text-center ws-m">@Html.Raw(ViewBag.Wtext.MetaText)</div>
-            </div>
             <img class="img-responsive wow fadeIn" data-wow-duration="2s" alt="MYVentures Welcome Image"
                  src='@ViewBag.UploadLocation@(ViewBag.Wimg.MetaText == "" ? "image_placeholder.jpg" : ViewBag.Wimg.MetaText)'>
         </div>
     </div><!-- / .row -->
 </section><!-- / .section -->
 <!-- ========== Blog Preview ========== -->
-<style>
-    .blog-post .bp-content {
-        padding: 40px 20px 50px 20px !important;
-    }
-</style>
 <div class="gray-bg">
     <section id="blog" class="section container blog-columns blog-preview">
         <div class="row">
@@ -174,7 +125,7 @@
     </section><!-- / .container -->
 </div><!-- / .gray-bg -->
 
-<div style="background: #efefef;    padding-top: 4%">
+<div class="featured_projects">
     <section class="container blog-columns blog-preview ">
 
         <div class="row">
@@ -191,10 +142,10 @@
                 <li><a href="#" data-filter=".photo">Photography</a></li>
             </ul>
         </div>
-        <div class="row ws-m">
+        <div class="row ws-m featured_project">
             <div class="col-md-8">
-                <div class="p-wrapper hover-default">
-                    <img src="https://www.damacproperties.com/sites/default/files/project/600x400_0.jpg" style="width:100%;" alt="Project Example">
+                <div class="p-wrapper hover-default featured_project_image">
+                    <img src="https://www.damacproperties.com/sites/default/files/project/600x400_0.jpg" alt="Project Example">
                 </div>
             </div>
             <div class="col-md-4">
@@ -213,7 +164,7 @@
                             Premium villas in an international golf community
                         </p>
                         <div>
-                            <div class="gmap map-boxed project" style="height:18vw;margin-bottom:1vw;"></div>
+                            <div class="gmap map-boxed project"></div>
                         </div>
                         <!-- Link -->
                         <a href="/MYHomes/Detail" class="btn btn-small">View Project</a>
@@ -222,10 +173,10 @@
             </div>
         </div>
 
-        <div class="row ws-m">
+        <div class="row ws-m featured_project">
             <div class="col-md-8">
-                <div class="p-wrapper hover-default">
-                    <img src="https://www.damacproperties.com/sites/default/files/project/600x400_0.jpg" style="width:100%;" alt="Project Example">
+                <div class="p-wrapper hover-default featured_project_image">
+                    <img src="https://www.damacproperties.com/sites/default/files/project/600x400_0.jpg" alt="Project Example">
                 </div>
             </div>
             <div class="col-md-4">
@@ -244,7 +195,7 @@
                             Premium villas in an international golf community
                         </p>
                         <div>
-                            <div class="gmap map-boxed project" style="height:18vw;margin-bottom:1vw;"></div>
+                            <div class="gmap map-boxed project"></div>
                         </div>
                         <!-- Link -->
                         <a href="/MYHomes/Detail" class="btn btn-small">View Project</a>
@@ -252,10 +203,10 @@
                 </div>
             </div>
         </div>
-        <div class="row ws-m">
+        <div class="row ws-m featured_project">
             <div class="col-md-8">
-                <div class="p-wrapper hover-default">
-                    <img src="https://www.damacproperties.com/sites/default/files/project/600x400_0.jpg" style="width:100%;" alt="Project Example">
+                <div class="p-wrapper hover-default featured_project_image">
+                    <img src="https://www.damacproperties.com/sites/default/files/project/600x400_0.jpg" alt="Project Example">
                 </div>
             </div>
             <div class="col-md-4">
@@ -274,7 +225,7 @@
                             Premium villas in an international golf community
                         </p>
                         <div>
-                            <div class="gmap map-boxed project" style="height:18vw;margin-bottom:1vw;"></div>
+                            <div class="gmap map-boxed project" ></div>
                         </div>
                         <!-- Link -->
                         <a href="/MYHomes/Detail" class="btn btn-small">View Project</a>
@@ -377,37 +328,4 @@
         </div><!-- / .container -->
     </div><!-- / .contact-wrapper -->
 </section><!-- / .contact-1 -->
-@section scripts
-{
-<script>
 
-    $(document).ready(function() {
-        initKenburn();
-    });
-</script>
-
-    <script>
-        var myLatlng = new google.maps.LatLng(31.4640581, 74.3859547);
-        var mapOptions = {
-            zoom: 15,
-            center: myLatlng,
-            scrollwheel: false, //we disable de scroll over the map, it is a really annoing when you scroll through page
-            
-            // Styling of the map in JSON object
-            styles: [{"featureType":"administrative","elementType":"labels.text.fill","stylers":[{"color":"#444444"}]},{"featureType":"landscape","elementType":"all","stylers":[{"color":"#f2f2f2"}]},{"featureType":"poi","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"road","elementType":"all","stylers":[{"saturation":-100},{"lightness":45}]},{"featureType":"road.highway","elementType":"all","stylers":[{"visibility":"simplified"}]},{"featureType":"road.arterial","elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"featureType":"transit","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"water","elementType":"all","stylers":[{"color":"#cdd2d4"},{"visibility":"on"}]}]
-        };
-
-        var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
-
-        var marker = new google.maps.Marker({
-            position: myLatlng,
-            icon: '/Content/MY/My2.png',
-            title: "MY Ventures Office"
-        });
-
-        marker.setMap(map);
-
-        
-
-    </script>
-}

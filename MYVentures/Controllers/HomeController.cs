@@ -11,6 +11,8 @@ using Newtonsoft.Json;
 
 namespace MYVentures.Controllers
 {
+
+    [Attributes.GZipOrDeflate]
     public class HomeController : Controller
     {
         //
@@ -157,12 +159,12 @@ namespace MYVentures.Controllers
             ViewBag.Eimg2 = Helper.getDicData(listSection, "section_Exclusive_2_img");
             ViewBag.Ehead2 = Helper.getDicData(listSection, "section_Exclusive_2_head");
             ViewBag.Etext2 = Helper.getDicData(listSection, "section_Exclusive_2_text");
-            ViewBag.Elink2 = Helper.getDicData(listSection, "section_Exclusive_1_link");
+            ViewBag.Elink2 = Helper.getDicData(listSection, "section_Exclusive_2_link");
 
             ViewBag.Eimg3 = Helper.getDicData(listSection, "section_Exclusive_3_img");
             ViewBag.Ehead3 = Helper.getDicData(listSection, "section_Exclusive_3_head");
             ViewBag.Etext3 = Helper.getDicData(listSection, "section_Exclusive_3_text");
-            ViewBag.Elink3 = Helper.getDicData(listSection, "section_Exclusive_1_link");
+            ViewBag.Elink3 = Helper.getDicData(listSection, "section_Exclusive_3_link");
 
             txt = Helper.getDicData(listSection, "contact_location");
             if (txt.MetaText.Contains("\n"))

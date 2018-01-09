@@ -5,9 +5,11 @@ using System.Web;
 using System.Web.Mvc;
 using CustomModels;
 using DAOLayer;
+using MYVentures.Attributes;
 
 namespace MYVentures.Controllers
 {
+    [Attributes.GZipOrDeflate]
     public class AboutController : Controller
     {
         //

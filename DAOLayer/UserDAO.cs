@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Text;
 using DBLayer;
 using CustomModels;
 using CustomModels.SiteForms;
-using System.Data.Entity.Validation;
 
 namespace DAOLayer
 {

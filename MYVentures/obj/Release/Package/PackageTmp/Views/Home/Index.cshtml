@@ -1,0 +1,418 @@
+﻿@{
+    ViewBag.Title = "Home";
+    ViewBag.UploadLocation = MYVentures.Helpers.CustomActions.GetUploadLocation();    
+}
+<script>
+    var kenburn = true;
+    function initKenburn() {
+        var hasKenburns = $('.kenburn-hero')[0];
+        if (hasKenburns) {
+
+            var wHeight = $(window).height();
+            var w_width = $(window).width();
+
+            $('.kenburns').attr('width', w_width);
+            $('.kenburns').attr('height', wHeight);
+            $('.kenburns').kenburns({
+                images: @Html.Raw(ViewBag.imgList),
+                frames_per_second: 50,
+                display_time: 8400,
+                fade_time: 1000,
+                zoom: 1,
+                background_color: '#000000'
+            });
+        }
+
+    } // initKenburns
+
+</script>
+<style>
+    .cd-words-wrapper {
+        width: 100% !important;
+        text-align: left !important;
+    }
+
+    .cd-words-wrapper b{
+        font-size: 30% !important;
+        letter-spacing: 5px;
+    }
+
+    .cd-words-wrapper b > p{
+        font-weight: 100;
+        padding-top: 15px;
+        letter-spacing: 4px;
+        font-size: 20px;
+    }
+</style>
+   <!-- ========== Hero Cover ========== -->
+<div class="kenburn-hero animated-hero">
+    <div class="kenburn-slider bg-overlay">
+
+        <!-- Heading -->
+        <div class="hero-wrapper  hero-content-wrapper">
+
+            <!-- Hero Content -->
+            <div class="hero-content ">
+
+                <h1 class="cd-headline zoom hero-lead">
+                    <span class="cd-words-wrapper">
+                        @{ var vflag = true; }
+                        @foreach(var ms in ViewBag.HeaderList)
+                        {
+                            <b class='@(vflag ? "is-visible" : "" )'>
+                                @ms.head
+                                <p>@Html.Raw(ms.text)</p>
+                                @{ vflag = false; }
+                            </b>
+                        }
+                    </span>
+                </h1>
+
+            </div>
+
+        </div><!-- / .hero-wrapper -->
+        <!-- Ken Burns Slider -->
+        <canvas class="kenburns">
+            <p>Your browser doesn't support canvas!</p>
+        </canvas>
+    </div><!-- / .kenburn-slider -->
+</div><!-- / #home .kenbrun-hero-->
+
+<!-- ========== About ========== -->
+<section id="welcome" class="container">
+    <div class="row">
+        <div class="ws-l"></div>
+
+        <header class="sec-heading">
+            <h2>Welcome to MY Ventures</h2>
+            <span class="subheading">@ViewBag.Whead.MetaText</span>
+        </header>
+        @*
+        <div class="col-md-12">
+            <div style="position: absolute; z-index: 10; color: white; margin-top: 10vh; font-weight: bold;">
+                <div class="col-md-offset-1 col-md-10 text-center ws-m">@Html.Raw(ViewBag.Wtext.MetaText)</div>
+            </div>
+            <img class="img-responsive wow fadeIn" data-wow-duration="2s" alt="MYVentures Welcome Image"
+                 src='@ViewBag.UploadLocation@(ViewBag.Wimg.MetaText == "" ? "image_placeholder.jpg" : ViewBag.Wimg.MetaText)'>
+        </div>*@
+        <div class="col-md-offset-2 col-md-8 text-center ws-m">@Html.Raw(ViewBag.Wtext.MetaText)</div>
+        <div class="col-md-12">
+            <img class="img-responsive wow fadeIn" data-wow-duration="2s" alt="MYVentures Welcome Image"
+                 src='@ViewBag.UploadLocation@(ViewBag.Wimg.MetaText == "" ? "image_placeholder.jpg" : ViewBag.Wimg.MetaText)'>
+        </div>
+    </div><!-- / .row -->
+</section><!-- / .section -->
+<!-- ========== Blog Preview ========== -->
+<style>
+    .blog-post .bp-content {
+        padding: 40px 20px 50px 20px !important;
+    }
+</style>
+<div class="gray-bg">
+    <section id="blog" class="section container blog-columns blog-preview">
+        <div class="row">
+
+            <header class="sec-heading">
+                <h2>More exclusive offers</h2>
+                <span class="subheading">Check out our more exclusive offers what were up to</span>
+            </header>
+
+            <!-- Blog Post 1 -->
+            <div class="col-lg-4 col-md-6 mb-sm-50">
+                <div class="blog-post wow fadeInUp" data-wow-duration="2s">
+                    <!-- Image -->
+                    <a href="@ViewBag.Elink1.MetaText" class="post-img">
+                        <img src='@ViewBag.UploadLocation@(ViewBag.Eimg1.MetaText == "" ? "image_placeholder.jpg" : ViewBag.Eimg1.MetaText)' alt="Offer 1">
+                    </a>
+                    <div class="bp-content">
+                        <!-- Post Title -->
+                        <a href="@ViewBag.Elink1.MetaText" class="post-title">
+                            <h4>@ViewBag.Ehead1.MetaText</h4>
+                        </a>
+                        <!-- Blurb -->
+                        <p>@ViewBag.Etext1.MetaText</p>
+                        <!-- Link -->
+                        <a href="@ViewBag.Elink1.MetaText" class=" btn btn-small">Learn More</a>
+                    </div><!-- / .bp-content -->
+                </div><!-- / .blog-post -->
+            </div><!-- / .col-lg-4 -->
+            <!-- Blog Post 2 -->
+            <div class="col-lg-4 col-md-6 mb-sm-50">
+                <div class="blog-post wow fadeInUp" data-wow-duration="2s" data-wow-delay=".3s">
+                    <!-- Image -->
+                    <a href="@ViewBag.Elink2.MetaText" class="post-img">
+                        <img src='@ViewBag.UploadLocation@(ViewBag.Eimg2.MetaText == "" ? "image_placeholder.jpg" : ViewBag.Eimg2.MetaText)' alt="Offer 2">
+                    </a>
+                    <div class="bp-content">
+                        <!-- Post Title -->
+                        <a href="@ViewBag.Elink2.MetaText" class="post-title">
+                            <h4>@ViewBag.Ehead2.MetaText</h4>
+                        </a>
+                        <!-- Blurb -->
+                        <p>@ViewBag.Etext2.MetaText</p>
+                        <!-- Link -->
+                        <a href="@ViewBag.Elink2.MetaText" class="btn btn-small">Learn More</a>
+                    </div><!-- / .bp-content -->
+                </div><!-- / .blog-post -->
+            </div><!-- / .col-lg-4 -->
+            <!-- Blog Post 3 -->
+            <div class="col-lg-4 col-md-6">
+                <div class="blog-post wow fadeInUp" data-wow-duration="2s" data-wow-delay=".6s">
+                    <!-- Image -->
+                    <a href="@ViewBag.Elink3.MetaText" class="post-img">
+                        <img src='@ViewBag.UploadLocation@(ViewBag.Eimg3.MetaText == "" ? "image_placeholder.jpg" : ViewBag.Eimg3.MetaText)' alt="Offer 3">
+                    </a>
+                    <div class="bp-content">
+                        <!-- Post Title -->
+                        <a href="@ViewBag.Elink3.MetaText" class="post-title">
+                            <h4>@ViewBag.Ehead3.MetaText</h4>
+                        </a>
+                        <!-- Blurb -->
+                        <p>@ViewBag.Etext3.MetaText</p>
+                        <!-- Link -->
+                        <a href="@ViewBag.Elink3.MetaText" class="btn btn-small">Learn More</a>
+                    </div><!-- / .bp-content -->
+                </div><!-- / .blog-post -->
+            </div><!-- / .col-lg-4 -->
+
+        </div><!-- / .row -->
+    </section><!-- / .container -->
+</div><!-- / .gray-bg -->
+
+<div style="background: #efefef;    padding-top: 4%">
+    <section class="container blog-columns blog-preview ">
+
+        <div class="row">
+            <header class="sec-heading">
+                <h2>Some of our project</h2>
+                <span class="subheading">Lorem ipsum dolor sit amet consectetur adipisicing</span>
+            </header>
+        </div>
+        <div class="row hide">
+            <ul id="pfolio-filters" class="portfolio-filters">
+                <li class="active"><a href="#" data-filter="*">All</a></li>
+                <li><a href="#" data-filter=".webdesing">Webdesign</a></li>
+                <li><a href="#" data-filter=".print">Print</a></li>
+                <li><a href="#" data-filter=".photo">Photography</a></li>
+            </ul>
+        </div>
+        <div class="row ws-m">
+            <div class="col-md-8">
+                <div class="p-wrapper hover-default">
+                    <img src="https://www.damacproperties.com/sites/default/files/project/600x400_0.jpg" style="width:100%;" alt="Project Example">
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="blog-post wow fadeInRight" data-wow-duration="1s" data-wow-delay=".3s">
+                    <!-- Image -->
+
+                    <div class="bp-content">
+                        <!-- Post Title -->
+                        <a href="/MYHomes/Detail" class="post-title">
+                            <h4>
+                                Aknan Villas
+                            </h4>
+                        </a>
+                        <!-- Blurb -->
+                        <p>
+                            Premium villas in an international golf community
+                        </p>
+                        <div>
+                            <div class="gmap map-boxed project" style="height:18vw;margin-bottom:1vw;"></div>
+                        </div>
+                        <!-- Link -->
+                        <a href="/MYHomes/Detail" class="btn btn-small">View Project</a>
+                    </div><!-- / .bp-content -->
+                </div>
+            </div>
+        </div>
+
+        <div class="row ws-m">
+            <div class="col-md-8">
+                <div class="p-wrapper hover-default">
+                    <img src="https://www.damacproperties.com/sites/default/files/project/600x400_0.jpg" style="width:100%;" alt="Project Example">
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="blog-post wow fadeInRight" data-wow-duration="1s" data-wow-delay=".3s">
+                    <!-- Image -->
+
+                    <div class="bp-content">
+                        <!-- Post Title -->
+                        <a href="/MYHomes/Detail" class="post-title">
+                            <h4>
+                                Aknan Villas
+                            </h4>
+                        </a>
+                        <!-- Blurb -->
+                        <p>
+                            Premium villas in an international golf community
+                        </p>
+                        <div>
+                            <div class="gmap map-boxed project" style="height:18vw;margin-bottom:1vw;"></div>
+                        </div>
+                        <!-- Link -->
+                        <a href="/MYHomes/Detail" class="btn btn-small">View Project</a>
+                    </div><!-- / .bp-content -->
+                </div>
+            </div>
+        </div>
+        <div class="row ws-m">
+            <div class="col-md-8">
+                <div class="p-wrapper hover-default">
+                    <img src="https://www.damacproperties.com/sites/default/files/project/600x400_0.jpg" style="width:100%;" alt="Project Example">
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="blog-post wow fadeInRight" data-wow-duration="1s" data-wow-delay=".3s">
+                    <!-- Image -->
+
+                    <div class="bp-content">
+                        <!-- Post Title -->
+                        <a href="/MYHomes/Detail" class="post-title">
+                            <h4>
+                                Aknan Villas
+                            </h4>
+                        </a>
+                        <!-- Blurb -->
+                        <p>
+                            Premium villas in an international golf community
+                        </p>
+                        <div>
+                            <div class="gmap map-boxed project" style="height:18vw;margin-bottom:1vw;"></div>
+                        </div>
+                        <!-- Link -->
+                        <a href="/MYHomes/Detail" class="btn btn-small">View Project</a>
+                    </div><!-- / .bp-content -->
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<!-- ========== Contact ========== -->
+<section id="contact" class="section contact-1">
+
+    <header class="sec-heading">
+        <h2>Countact Us</h2>
+        <span class="subheading">We love to hear from you</span>
+    </header>
+
+    <div class="contact-wrapper">
+        <!-- Map -->
+        <div id="map-canvas" class="gmap map-boxed"></div>
+        <!-- Show Info Button -->
+        <div class="show-info-link">
+            <a href="#" class="show-info">
+                <i class="fa fa-info"></i>
+                <h6>Show info</h6>
+            </a>
+        </div>
+        <div class="container">
+            <div class="row ws-m">
+                <!-- Address Info -->
+                <div class="col-xs-offset-1 col-xs-11 col-md-offset-2 col-md-6 contact-info-wrapper">
+                    <address>
+                        <div class="row">
+                            <!-- Phone -->
+                            <div class="col-sm-6 address-group">
+                                <span>Phone</span>
+                                <a href="#">@Html.Raw(ViewBag.phone.MetaText)</a>
+                            </div>
+                            <!-- Address -->
+                            <div class="col-sm-5 address-group">
+                                <span>Address</span>
+                                <p>@Html.Raw(ViewBag.location.MetaText)</p>
+                            </div>
+                        </div><!-- / .row -->
+                        <div class="row">
+                            <!-- Email -->
+                            <div class="col-sm-6 address-group">
+                                <span>Email</span>
+                                <a href="mailto:@ViewBag.email.MetaText">@ViewBag.email.MetaText</a>
+                            </div>
+                            <!-- Hours -->
+                            <div class="col-sm-5 address-group">
+                                <span>Open Hours</span>
+                                <p>@ViewBag.open.MetaText</p>
+                            </div>
+                        </div><!-- / .row -->
+                        <!-- Show Map Button -->
+                        <div class="row show-map-link">
+                            <a href="#" class="show-map"><span class="icon-map-pin"></span>Show on map</a>
+                        </div><!-- / .row -->
+                    </address>
+                </div><!-- / .contact-info-wrapper -->
+            </div><!-- / .row -->
+            <!-- Contact Form -->
+            <div class="row">
+                <form action="/Home/SendMessage" method="POST" class="form-ajax">
+                    <div class="col-md-offset-2 col-md-4 wow fadeInUp" data-wow-duration="1s">
+                        <!-- Name -->
+                        <div class="form-group">
+                            <input type="text" name="model.name" id="name-contact-1" class="form-control validate-locally" placeholder="Enter your name">
+                            <label for="name-contact-1">Name</label>
+                            <span class="pull-right alert-error"></span>
+                        </div>
+                        <!-- Email -->
+                        <div class="form-group">
+                            <input type="email" name="model.email" id="email-contact-1" class="form-control validate-locally" placeholder="Enter your email">
+                            <label for="email-contact-1">Email</label>
+                            <span class="pull-right alert-error"></span>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="model.phone" id="email-contact-1" class="form-control validate-locally" placeholder="Enter your phone number">
+                            <label for="phone-contact-1">Phone Number</label>
+                            <span class="pull-right alert-error"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-4 wow fadeInUp" data-wow-duration="1s">
+                        <!-- Message -->
+                        <div class="form-group">
+                            <textarea name="model.message" id="message-contact-1" class="form-control" rows="8" placeholder="Your Message"></textarea>
+                            <label for="message-contact-1">Message</label>
+                        </div>
+                        <div>
+                            <input type="submit" class="btn pull-right" value="Send Message">
+                        </div>
+                        <!-- Ajax Message -->
+                        <div class="ajax-message col-md-12 no-gap"></div>
+                    </div><!-- / .col-md-4 -->
+                </form>
+            </div><!-- / .row -->
+        </div><!-- / .container -->
+    </div><!-- / .contact-wrapper -->
+</section><!-- / .contact-1 -->
+@section scripts
+{
+<script>
+
+    $(document).ready(function() {
+        initKenburn();
+    });
+</script>
+
+    <script>
+        var myLatlng = new google.maps.LatLng(31.4640581, 74.3859547);
+        var mapOptions = {
+            zoom: 15,
+            center: myLatlng,
+            scrollwheel: false, //we disable de scroll over the map, it is a really annoing when you scroll through page
+            
+            // Styling of the map in JSON object
+            styles: [{"featureType":"administrative","elementType":"labels.text.fill","stylers":[{"color":"#444444"}]},{"featureType":"landscape","elementType":"all","stylers":[{"color":"#f2f2f2"}]},{"featureType":"poi","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"road","elementType":"all","stylers":[{"saturation":-100},{"lightness":45}]},{"featureType":"road.highway","elementType":"all","stylers":[{"visibility":"simplified"}]},{"featureType":"road.arterial","elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"featureType":"transit","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"water","elementType":"all","stylers":[{"color":"#cdd2d4"},{"visibility":"on"}]}]
+        };
+
+        var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+
+        var marker = new google.maps.Marker({
+            position: myLatlng,
+            icon: '/Content/MY/My2.png',
+            title: "MY Ventures Office"
+        });
+
+        marker.setMap(map);
+
+        
+
+    </script>
+}

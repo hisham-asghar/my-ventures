@@ -1,19 +1,48 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.AccessControl;
 using System.Web;
 using System.Web.Mvc;
+using Common;
 using CustomModels;
 using CustomModels.PropertyModels;
 using CustomModels.SiteForms;
 using DBLayer;
+using static Common.Enums;
 
 namespace MYVentures.Controllers
 {
+    [Attributes.GZipOrDeflate]
     public class PropertyController : Controller
     {
         //
         // GET: /Property/
+
+        public ActionResult Search(string propertyType,string city,string phase,string block)
+        {
+
+            if (string.Equals(Enums.Property.Type.Homes.ToString(), propertyType ?? "", StringComparison.CurrentCultureIgnoreCase))
+            {
+                ViewBag.PropertyType = Enums.Property.Type.Homes.ToDescription();
+            }
+            else if (string.Equals(Enums.Property.Type.Lands.ToString(), propertyType ?? "", StringComparison.CurrentCultureIgnoreCase))
+            {
+                ViewBag.PropertyType = Enums.Property.Type.Lands.ToDescription();
+            }
+            else if (string.Equals(Enums.Property.Type.Plots.ToString(), propertyType ?? "", StringComparison.CurrentCultureIgnoreCase))
+            {
+                ViewBag.PropertyType = Enums.Property.Type.Plots.ToDescription();
+            }
+            else 
+            {
+                ViewBag.PropertyType = "MY Ventures Properties";
+            }
+
+
+            return View();
+        }
+
 
         public ActionResult GetProperties()
         {

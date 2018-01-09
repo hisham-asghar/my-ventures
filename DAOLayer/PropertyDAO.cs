@@ -403,11 +403,13 @@ namespace DAOLayer
                 return db.PropertyViews.ToList();
             }
         }
-        public static List<PropertyView> GetPropertiesList(int ptid)
+        public static List<PropertyView> GetPropertiesList(int ptid = 0)
         {
             using (var db = new Model())
             {
-                return db.PropertyViews.Where(p => p.PropertyTypeId == ptid || p.ParentTypeId == ptid).ToList();
+                return ptid == 0 
+                    ? db.PropertyViews.ToList() 
+                    : db.PropertyViews.Where(p => p.PropertyTypeId == ptid || p.ParentTypeId == ptid).ToList();
             }
         }
 

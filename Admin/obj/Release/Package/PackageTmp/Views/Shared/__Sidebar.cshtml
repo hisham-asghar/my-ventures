@@ -1,0 +1,171 @@
+﻿
+<div class="sidebar" data-active-color="rose" data-background-color="red" data-image="/Content/assets/img/sidebar-1.jpg">
+    <!--
+        Tip 1: You can change the color of active element of the sidebar using: data-active-color="purple | blue | green | orange | red | rose"
+        Tip 2: you can also add an image using data-image tag
+        Tip 3: you can change the color of the sidebar with data-background-color="white | black"
+    -->
+    <div class="logo">
+        <a href="/" class="simple-text">
+            MY Ventures
+        </a>
+    </div>
+    <div class="logo logo-mini">
+        <a href="/" class="simple-text">
+            MY
+        </a>
+    </div>
+    <div class="sidebar-wrapper">
+        <div class="user hide">
+            <div class="photo">
+                <img src="/Content/assets/img/default-avatar.png" />
+            </div>
+            <div class="info">
+                <a data-toggle="collapse" href="#ProfileComponents" class="collapsed">
+                    Anonymous
+                    <b class="caret"></b>
+                </a>
+                <div class="collapse" id="ProfileComponents">
+                    <ul class="nav">
+                        <li>
+                            <a href="#">My Profile</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <ul class="nav">
+
+            <li>
+                <a href="/">
+                    <i class="material-icons">dashboard</i>
+                    <p>Dashboard</p>
+                </a>
+            </li>
+            <li>
+                <a data-toggle="collapse" href="#MainPagecomponents">
+                    <i class="material-icons">apps</i>
+                    <p>
+                        Website Settings
+                        <b class="caret"></b>
+                    </p>
+                </a>
+                <div class="collapse" id="MainPagecomponents">
+                    <ul class="nav">
+                        <li><a href="@Url.Action("Welcome","Home")">Welcome Section</a></li>
+                        <li><a href="@Url.Action("ExclusvieOffers","Home")">Exclusvie Offers</a></li>
+                        <li><a href="@Url.Action("Contact","Home")">Contact</a></li>
+                    </ul>
+                </div>
+            </li>
+
+            <li>
+                <a data-toggle="collapse" href="#AboutPagecomponents">
+                    <i class="material-icons">apps</i>
+                    <p>
+                        About Settings
+                        <b class="caret"></b>
+                    </p>
+                </a>
+                <div class="collapse" id="AboutPagecomponents">
+                    <ul class="nav">
+                        <li><a href="@Url.Action("AboutSmall","Home")">About Small</a></li>
+                        <li><a href="@Url.Action("CeoMessage","Home")">CEO Message</a></li>
+                    </ul>
+                </div>
+            </li>
+            <li>
+                <a data-toggle="collapse" href="#Propertycomponents">
+                    <i class="material-icons">apps</i>
+                    <p>
+                        Properties
+                        <b class="caret"></b>
+                    </p>
+                </a>
+                <div class="collapse" id="Propertycomponents">
+                    <ul class="nav">
+                        <li><a href="@Url.Action("Index","MyProperty")">View All</a></li>
+                        <li><a href="@Url.Action("AddNew","MyProperty")">Add New</a></li>
+                        <li><a href="@Url.Action("Amenities","MyProperty")">Amenities</a></li>
+                    </ul>
+                </div>
+            </li>
+
+            <li>
+                <a data-toggle="collapse" href="#Historycomponents">
+                    <i class="material-icons">apps</i>
+                    <p>
+                        History
+                        <b class="caret"></b>
+                    </p>
+                </a>
+                <div class="collapse" id="Historycomponents">
+                    <ul class="nav">
+                        <li><a href="@Url.Action("Index","History")">View All</a></li>
+                        <li><a href="@Url.Action("Update","History")">Add</a></li>
+                    </ul>
+                </div>
+            </li>
+            <li>
+                <a data-toggle="collapse" href="#FAQcomponents">
+                    <i class="material-icons">apps</i>
+                    <p>
+                        FAQs
+                        <b class="caret"></b>
+                    </p>
+                </a>
+                <div class="collapse" id="FAQcomponents">
+                    <ul class="nav">
+                        <li><a href="@Url.Action("Index","FAQ")">View All</a></li>
+                        <li><a href="@Url.Action("Update","FAQ")">Add</a></li>
+                    </ul>
+                </div>
+            </li>
+            <li>
+                <a data-toggle="collapse" href="#Servicescomponents">
+                    <i class="material-icons">apps</i>
+                    <p>
+                        Services
+                        <b class="caret"></b>
+                    </p>
+                </a>
+                <div class="collapse" id="Servicescomponents">
+                    <ul class="nav">
+                        <li><a href="@Url.Action("Index","Services")">View All</a></li>
+                        <li><a href="@Url.Action("Update","Services")">Add</a></li>
+                    </ul>
+                </div>
+            </li>
+            <li>
+                <a data-toggle="collapse" href="#Mapscomponents">
+                    <i class="material-icons">apps</i>
+                    <p>
+                        Maps
+                        <b class="caret"></b>
+                    </p>
+                </a>
+                <div class="collapse" id="Mapscomponents">
+                    <ul class="nav">
+                        <li><a href="@Url.Action("Index","Maps")">View All</a></li>
+                        <li><a href="@Url.Action("Update","Maps")">Add</a></li>
+                    </ul>
+                </div>
+            </li>
+            <li>
+                <a data-toggle="collapse" href="#dwnscomponents">
+                    <i class="material-icons">apps</i>
+                    <p>
+                        Downloads
+                        <b class="caret"></b>
+                    </p>
+                </a>
+                <div class="collapse" id="dwnscomponents">
+                    <ul class="nav">
+                        <li><a href="@Url.Action("Index","Downloads")">View All</a></li>
+                        <li><a href="@Url.Action("Update","Downloads")">Add</a></li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>

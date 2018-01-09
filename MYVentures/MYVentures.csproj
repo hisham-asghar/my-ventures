@@ -20,6 +20,7 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -178,6 +179,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Attributes\GZipOrDeflateAttribute.cs" />
     <Compile Include="Controllers\AboutController.cs" />
     <Compile Include="Controllers\BlogsController.cs" />
     <Compile Include="Controllers\ContactController.cs" />
@@ -196,6 +198,8 @@
     <Compile Include="Helpers\CustomActions.cs" />
     <Compile Include="Helpers\EmailHelper.cs" />
     <Compile Include="Helpers\MailChimpHelper.cs" />
+    <Compile Include="Models\CacheHandler.cs" />
+    <Compile Include="Models\CacheModels\PropertiesCache.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -246,6 +250,8 @@
     <Content Include="Content\assets\images\signature.png" />
     <Content Include="Content\assets\images\_logo.png" />
     <Content Include="Content\assets\js\.DS_Store" />
+    <Content Include="Content\assets\js\custom.js" />
+    <Content Include="Content\assets\js\vendor\font-awesome-all.js" />
     <Content Include="Content\assets\js\gmap.js" />
     <Content Include="Content\assets\js\main.js" />
     <Content Include="Content\assets\js\vendor\.DS_Store" />
@@ -277,6 +283,7 @@
     <Content Include="Content\assets\js\vendor\wow.js" />
     <Content Include="Content\assets\js\vendor\wow.min.js" />
     <Content Include="Content\assets\styles\.DS_Store" />
+    <Content Include="Content\assets\styles\custom.css" />
     <Content Include="Content\assets\styles\main.css" />
     <Content Include="Content\assets\styles\main.css.map" />
     <Content Include="Content\assets\styles\responsive.css" />
@@ -332,8 +339,8 @@
     <Content Include="Content\assets\styles\vendor\magnific-popup.css" />
     <Content Include="Content\assets\styles\vendor\slick.css" />
     <Content Include="Content\images\4-Formal-Dining.jpg" />
+    <Content Include="Content\images\aboutUsHeader.jpg" />
     <Content Include="Content\images\Arrival.jpg" />
-    <Content Include="Content\images\COMMERCIAL.jpg" />
     <Content Include="Content\images\Lobby-night.jpg" />
     <Content Include="Content\images\Location-Map-The-Sterling-by-Omniyat.jpg" />
     <Content Include="Content\images\one-palm-dubai-1.jpg" />
@@ -477,15 +484,19 @@
     <Content Include="Views\Services\Index.cshtml" />
     <Content Include="Views\Partial\Team.cshtml" />
     <Content Include="Views\Partial\Services.cshtml" />
+    <Content Include="Views\Property\Search.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{212baa28-200c-4835-879c-3b1ef26b22fc}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CustomModels\CustomModels.csproj">
       <Project>{f8a61375-aa86-48af-ab9a-f1bdf94c85cd}</Project>
       <Name>CustomModels</Name>

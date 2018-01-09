@@ -7,6 +7,7 @@ using DAOLayer;
 
 namespace MYVentures.Controllers
 {
+    [Attributes.GZipOrDeflate]
     public class DownloadsController : Controller
     {
         //

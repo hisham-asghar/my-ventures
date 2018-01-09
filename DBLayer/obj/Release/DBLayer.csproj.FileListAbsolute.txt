@@ -1,0 +1,10 @@
+C:\Users\taghe\Documents\Git\myventures\DBLayer\bin\Release\DBLayer.dll.config
+C:\Users\taghe\Documents\Git\myventures\DBLayer\bin\Release\DBLayer.dll
+C:\Users\taghe\Documents\Git\myventures\DBLayer\bin\Release\DBLayer.pdb
+C:\Users\taghe\Documents\Git\myventures\DBLayer\bin\Release\EntityFramework.dll
+C:\Users\taghe\Documents\Git\myventures\DBLayer\bin\Release\EntityFramework.SqlServer.dll
+C:\Users\taghe\Documents\Git\myventures\DBLayer\bin\Release\EntityFramework.xml
+C:\Users\taghe\Documents\Git\myventures\DBLayer\bin\Release\EntityFramework.SqlServer.xml
+C:\Users\taghe\Documents\Git\myventures\DBLayer\obj\Release\DBLayer.csprojResolveAssemblyReference.cache
+C:\Users\taghe\Documents\Git\myventures\DBLayer\obj\Release\DBLayer.dll
+C:\Users\taghe\Documents\Git\myventures\DBLayer\obj\Release\DBLayer.pdb

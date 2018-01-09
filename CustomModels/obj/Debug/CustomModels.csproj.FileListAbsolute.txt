@@ -1,0 +1,9 @@
+C:\Users\taghe\Documents\Git\myventures\CustomModels\bin\Debug\CustomModels.dll
+C:\Users\taghe\Documents\Git\myventures\CustomModels\bin\Debug\CustomModels.pdb
+C:\Users\taghe\Documents\Git\myventures\CustomModels\bin\Debug\DBLayer.dll
+C:\Users\taghe\Documents\Git\myventures\CustomModels\bin\Debug\EntityFramework.dll
+C:\Users\taghe\Documents\Git\myventures\CustomModels\bin\Debug\DBLayer.pdb
+C:\Users\taghe\Documents\Git\myventures\CustomModels\bin\Debug\EntityFramework.xml
+C:\Users\taghe\Documents\Git\myventures\CustomModels\obj\Debug\CustomModels.csprojResolveAssemblyReference.cache
+C:\Users\taghe\Documents\Git\myventures\CustomModels\obj\Debug\CustomModels.dll
+C:\Users\taghe\Documents\Git\myventures\CustomModels\obj\Debug\CustomModels.pdb

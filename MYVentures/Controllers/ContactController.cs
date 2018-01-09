@@ -4,6 +4,7 @@ using DAOLayer;
 
 namespace MYVentures.Controllers
 {
+    [Attributes.GZipOrDeflate]
     public class ContactController : Controller
     {
         public ActionResult Index()

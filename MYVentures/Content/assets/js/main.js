@@ -684,17 +684,6 @@
   Contact Pages
 -------------------------------------------------- */
 
-	$('.show-map').on('click', function(e){
-	  e.preventDefault();
-	  $('.contact-info-wrapper').toggleClass('map-open');
-	  $('.show-info-link').toggleClass('info-open');
-	});
-
-	$('.show-info-link').on('click', function(e){
-	  e.preventDefault();
-	  $('.contact-info-wrapper').toggleClass('map-open');
-	  $(this).toggleClass('info-open');
-	});
 
 
 
