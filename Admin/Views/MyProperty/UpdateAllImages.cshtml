@@ -1,0 +1,79 @@
+﻿@{
+    ViewBag.Title = "UpdateAllImages";
+}
+
+<h2>UpdateAllImages</h2>
+
+@section scripts{
+
+    @*<script src="~/Scripts/jQuery.FileUpload/vendor/jquery.ui.widget.js"></script>
+    <script src="~/Scripts/jQuery.FileUpload/tmpl.min.js"></script>
+    <script src="~/Scripts/jQuery.FileUpload/load-image.all.min.js"></script>
+    <script src="~/Scripts/jQuery.FileUpload/canvas-to-blob.min.js"></script>
+    <script src="~/Scripts/jQuery.FileUpload/jquery.iframe-transport.js"></script>
+    <script src="~/Scripts/jQuery.FileUpload/jquery.fileupload.js"></script>
+    <script src="~/Scripts/jQuery.FileUpload/jquery.fileupload-process.js"></script>
+    <script src="~/Scripts/jQuery.FileUpload/jquery.fileupload-image.js"></script>
+    <script src="~/Scripts/jQuery.FileUpload/jquery.fileupload-audio.js"></script>
+    <script src="~/Scripts/jQuery.FileUpload/jquery.fileupload-video.js"></script>
+    <script src="~/Scripts/jQuery.FileUpload/jquery.fileupload-validate.js"></script>
+    <script src="~/Scripts/jQuery.FileUpload/jquery.fileupload-ui.js"></script>
+    <script src="~/Scripts/blueimp-gallery2/js/blueimp-gallery.js"></script>
+    <script src="~/Scripts/blueimp-gallery2/js/jquery.blueimp-gallery.min.js"></script>
+    <script src="~/Scripts/blueimp-gallery2/js/blueimp-gallery-video.js"></script>
+    <script src="~/Scripts/blueimp-gallery2/js/blueimp-gallery-indicator.js"></script>
+    <script src="~/Scripts/blueimp-gallery2/js/jquery.blueimp-gallery.js"></script>*@
+    
+    @Scripts.Render("~/Content/jsFileUpload")
+
+    <script>
+
+        var $form = null;
+        $(function () {
+
+            $form = $('#fileupload').fileupload({
+                dataType: 'json',
+                maxFileSize: 1024 * 1024 * 10,
+                done: function (e, data) {
+                    debugger;
+                    var files = data.result.files;
+                    for (var f in files) {
+                        debugger;
+                        var hidden = $("<input type=hidden name=imagesList>");
+                        hidden.val(files[f].guid);
+                        $("#saveProject").append(hidden);
+                    }
+                }
+            });
+
+        });
+        $('#fileupload').addClass('fileupload-processing');
+
+    </script>
+}
+@model CustomModels.PropertyModels.PropertyBasicInfo
+<div class="col-md-12">
+    <h2>@Model.propertyname</h2>
+    <h5>Update Images</h5>
+    @if (ViewBag.errors != null)
+    {
+        <h5 class="title" style="font-weight: bold;">@ViewBag.errors</h5>
+    }
+    <form id="saveProject" method="POST">
+        <button type="submit" class="btn btn-success">
+            Save Images
+        </button>
+    </form>
+    <!-- blueimp File Upload & Gallery styles -->
+    @*<link rel="stylesheet" href="~/Content/jQuery.FileUpload/css/jquery.fileupload.css" />
+    <link rel="stylesheet" href="~/Content/jQuery.FileUpload/css/jquery.fileupload-ui.css" />
+    <link rel="stylesheet" href="~/Content/blueimp-gallery2/css/blueimp-gallery.css" />
+    <link rel="stylesheet" href="~/Content/blueimp-gallery2/css/blueimp-gallery-video.css" />
+    <link rel="stylesheet" href="~/Content/blueimp-gallery2/css/blueimp-gallery-indicator.css" />*@
+
+    @Styles.Render("~/Content/FileUpload")
+
+    <div id="innerformImages">
+        @Html.Partial("_Files")
+    </div>
+</div>

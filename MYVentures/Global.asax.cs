@@ -18,7 +18,7 @@ namespace MYVentures
         {
             AreaRegistration.RegisterAllAreas();
 
-            BundleTable.EnableOptimizations = true;
+            //BundleTable.EnableOptimizations = true;
 
             WebApiConfig.Register(GlobalConfiguration.Configuration);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);

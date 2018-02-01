@@ -1,4 +1,9 @@
-﻿
+﻿<style>
+    .sidebar .nav li p {
+        display: inline;
+        margin-left: 8px;
+    }
+</style>
 <div class="sidebar" data-active-color="rose" data-background-color="red" data-image="/Content/assets/img/sidebar-1.jpg">
     <!--
         Tip 1: You can change the color of active element of the sidebar using: data-active-color="purple | blue | green | orange | red | rose"
@@ -38,13 +43,13 @@
 
             <li>
                 <a href="/">
-                    <i class="material-icons">dashboard</i>
+                    <i class="fas fa-th-large"></i>
                     <p>Dashboard</p>
                 </a>
             </li>
             <li>
                 <a data-toggle="collapse" href="#MainPagecomponents">
-                    <i class="material-icons">apps</i>
+                    <i class="fas fa-th"></i>
                     <p>
                         Website Settings
                         <b class="caret"></b>
@@ -52,6 +57,7 @@
                 </a>
                 <div class="collapse" id="MainPagecomponents">
                     <ul class="nav">
+                        <li><a href="@Url.Action("Header","Home")">Main Page Header</a></li>
                         <li><a href="@Url.Action("Welcome","Home")">Welcome Section</a></li>
                         <li><a href="@Url.Action("ExclusvieOffers","Home")">Exclusvie Offers</a></li>
                         <li><a href="@Url.Action("Contact","Home")">Contact</a></li>
@@ -61,7 +67,7 @@
 
             <li>
                 <a data-toggle="collapse" href="#AboutPagecomponents">
-                    <i class="material-icons">apps</i>
+                    <i class="fas fa-th"></i>
                     <p>
                         About Settings
                         <b class="caret"></b>
@@ -76,7 +82,7 @@
             </li>
             <li>
                 <a data-toggle="collapse" href="#Propertycomponents">
-                    <i class="material-icons">apps</i>
+                    <i class="fas fa-th"></i>
                     <p>
                         Properties
                         <b class="caret"></b>
@@ -93,7 +99,7 @@
 
             <li>
                 <a data-toggle="collapse" href="#Historycomponents">
-                    <i class="material-icons">apps</i>
+                    <i class="fas fa-th"></i>
                     <p>
                         History
                         <b class="caret"></b>
@@ -108,7 +114,7 @@
             </li>
             <li>
                 <a data-toggle="collapse" href="#FAQcomponents">
-                    <i class="material-icons">apps</i>
+                    <i class="fas fa-th"></i>
                     <p>
                         FAQs
                         <b class="caret"></b>
@@ -123,7 +129,7 @@
             </li>
             <li>
                 <a data-toggle="collapse" href="#Servicescomponents">
-                    <i class="material-icons">apps</i>
+                    <i class="fas fa-th"></i>
                     <p>
                         Services
                         <b class="caret"></b>
@@ -138,7 +144,7 @@
             </li>
             <li>
                 <a data-toggle="collapse" href="#Mapscomponents">
-                    <i class="material-icons">apps</i>
+                    <i class="fas fa-th"></i>
                     <p>
                         Maps
                         <b class="caret"></b>
@@ -153,7 +159,7 @@
             </li>
             <li>
                 <a data-toggle="collapse" href="#dwnscomponents">
-                    <i class="material-icons">apps</i>
+                    <i class="fas fa-th"></i>
                     <p>
                         Downloads
                         <b class="caret"></b>

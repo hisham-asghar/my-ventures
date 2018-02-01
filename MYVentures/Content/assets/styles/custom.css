@@ -19,6 +19,17 @@
 .learn-more-btn-header:hover{
     background:rgba(255, 0, 0, 0.59) !important;
 }
+.website-btn-link{
+    color: #eee !important;
+    background: #777 !important;
+}
+.website-btn-link:hover{
+    background:rgba(255, 0, 0, 0.59) !important;
+}
+.website-btn-link.show-map {
+    padding: 10px;
+    display: inline !important;
+}
 .main-custom-header .about-box h4 {
     color: #eee !important;
     font-weight: bold;
@@ -89,3 +100,18 @@
 }.main_landing .featured_projects .featured_project .map-boxed{
      height:18vw;margin-bottom:1vw;
  }
+.kenburn-hero .hero-content .title-data {
+    font-size: 28px; font-weight: 700; color: #ececec;
+}
+.kenburn-hero .hero-content {
+    zoom: 125%;
+}
+footer.footer-widgets ul.useful-links > li > a {
+    color: #fff;
+}
+footer.footer-widgets ul.useful-links > li{
+    margin: 0 !important;
+}
+nav.main-custom-header .aboutUsHeader{
+    box-shadow: 1px 1px 4px 1px #3a383a;
+}

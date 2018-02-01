@@ -16,4 +16,10 @@ namespace CustomModels.SiteForms
     {
         public string link { get; set; }
     }
+    public class MainPageHeaderSection
+    {
+        public string path { get; set; }
+        public string title { get; set; }
+        public string text { get; set; }
+    }
 }

@@ -1,6 +1,6 @@
 ﻿@section scripts{
 
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDVTDNg0tY6gnDu6NnoIuVG7VTtvS9pyzU"></script>
+    @*<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDVTDNg0tY6gnDu6NnoIuVG7VTtvS9pyzU"></script>*@
     <script type="text/javascript">
         var countryList = @Html.Raw(@Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.countries));
         var rateId = 1;
@@ -33,7 +33,7 @@
                 FinishAdd();
             });
 
-            CustomMap(32.4690717, 74.39393389999998);
+            //CustomMap(32.4690717, 74.39393389999998);
             $('.datetimepicker2').datetimepicker({
                 icons: {
                     time: "fa fa-clock-o",
@@ -106,6 +106,7 @@
 
         function priceClick(x) {
             $('#' + x + ' > a').trigger('click');
+            debugger;
         }
 
         function showResult(result) {
@@ -300,37 +301,37 @@
         <ul class="nav nav-pills nav-pills-rose nav-stacked">
             <li id="basic_infoLi" class="active">
                 <a href="#basic_info" data-toggle="tab">
-                    <i class="material-icons">launch</i>
+                    <i class="fas fa-external-link-alt"></i><br/>
                     BASIC INFO
                 </a>
             </li>
             <li id="amenitiesLi">
                 <a href="#amenities" data-toggle="tab">
-                    <i class="material-icons">launch</i>
+                    <i class="fas fa-external-link-alt"></i><br />
                     AMENITIES
                 </a>
             </li>
             <li id="descriptionLi">
                 <a href="#description" data-toggle="tab">
-                    <i class="material-icons">launch</i>
+                    <i class="fas fa-external-link-alt"></i><br />
                     DESCRIPTION
                 </a>
             </li>
             <li id="photosLi">
                 <a href="#photos" data-toggle="tab">
-                    <i class="material-icons">launch</i>
+                    <i class="fas fa-external-link-alt"></i><br />
                     EXTRAS
                 </a>
             </li>
             <li id="priceLi" class="hide">
                 <a href="#price" data-toggle="tab">
-                    <i class="material-icons">launch</i>
+                    <i class="fas fa-external-link-alt"></i><br />
                     PRICE / AVAILABILITY
                 </a>
             </li>
             <li id="finishLi">
                 <a href="#finish" data-toggle="tab">
-                    <i class="material-icons">check</i>
+                    <i class="fas fa-check"></i><br />
                     Finish
                 </a>
             </li>
@@ -354,10 +355,10 @@
                                     </span>
                                     <div class="form-group label-floating">
                                         <label class="control-label">
-                                            Give your Property a name. 15 characters is ideal. 0 /15
+                                            Give your Property a name. 30 characters is ideal.
                                             <small>(required)</small>
                                         </label>
-                                        <input name="model.propertyname" type="text" maxlength="15" class="form-control">
+                                        <input name="model.propertyname" type="text" maxlength="30" class="form-control">
                                     </div>
                                 </div>
                             </div>
@@ -368,10 +369,10 @@
                                     </span>
                                     <div class="form-group label-floating">
                                         <label class="control-label">
-                                            Give your Property a Sub name. 50 characters is ideal. 0 /50
+                                            Give your Property a Sub name. 150 characters is ideal.
                                             <small>(required)</small>
                                         </label>
-                                        <input name="model.propertysubname" maxlength="50" type="text" class="form-control">
+                                        <input name="model.propertysubname" maxlength="150" type="text" class="form-control">
                                     </div>
                                 </div>
                             </div>
@@ -457,9 +458,7 @@
                                 </div>
                                 <div class="input-group">
                                     <span class="input-group-addon">
-                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                        &nbsp;&nbsp;&nbsp;&nbsp;
+                                        Address
                                     </span>
                                     <div class="row">
                                         <div class="col-sm-5">
@@ -505,26 +504,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-12">
-                                <button id="generateMap" type="button" class="btn btn-info pull-right" onclick="return generateBtnClick()">Generate</button>
-
-                                
-                                
-                                <div class="card" style="background: rgba(238, 238, 238, 0.62);">
-                                    <div class="card-header card-header-icon" data-background-color="rose">
-                                        <i class="material-icons">room</i>
-                                    </div>
-                                    <div class="card-content">
-                                        <h4 class="card-title">Property Map</h4>
-                                        <div id="customSkinMap" class="map"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <button onclick="priceClick('amenitiesLi')" data-toggle="tab" class="btn btn-info pull-right">
-                                    Next
-                                </button>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -540,12 +519,7 @@
                                 <div class="col-md-6">
                                     <div class="input-group">
                                         <span class="input-group-addon">
-                                            <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                                                 width="39.822px" height="30.089px" viewBox="0 0 39.822 30.089" style="enable-background: new 0 0 39.822 30.089;"
-                                                 xml:space="preserve">
-                                            <image style="overflow: visible;" width="50" height="50" xlink:href="/Content/assets/img/bed.png" transform="matrix(0.7501 0 0 0.7501 -0.644 -9.6831)">
-                                    </image>
-                                </svg>
+                                            <i class="fas fa-bed"></i>
                                         </span>
                                         <div class="form-group label-floating is-empty">
                                             <label class="control-label">Number of bedrooms</label>
@@ -556,12 +530,7 @@
                                 <div class="col-md-6">
                                     <div class="input-group">
                                         <span class="input-group-addon">
-                                            <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                                                 width="39.822px" height="30.089px" viewBox="0 0 39.822 30.089" style="enable-background: new 0 0 39.822 30.089;"
-                                                 xml:space="preserve">
-                                            <image style="overflow: visible;" width="50" height="50" xlink:href="/Content/assets/img/bath.png" transform="matrix(0.7501 0 0 0.7501 -0.644 -9.6831)">
-                                    </image>
-                                </svg>
+                                            <i class="fas fa-bath"></i>
                                         </span>
                                         <div class="form-group label-floating is-empty">
                                             <label class="control-label">Number of bathrooms </label>
@@ -573,12 +542,7 @@
                                 <div class="col-md-7">
                                     <div class="input-group">
                                         <span class="input-group-addon">
-                                            <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                                                 width="39.822px" height="30.089px" viewBox="0 0 39.822 30.089" style="enable-background: new 0 0 39.822 30.089;"
-                                                 xml:space="preserve">
-                                            <image style="overflow: visible;" width="50" height="50" xlink:href="/Content/assets/img/toilet.png" transform="matrix(0.7501 0 0 0.7501 -0.644 -9.6831)">
-                                    </image>
-                                </svg>
+                                            <i class="fas fa-shower"></i>
                                         </span>
                                         <div class="form-group label-floating">
                                             <label class="control-label">Number of toilets </label>
@@ -589,31 +553,30 @@
                                 </div>
                             </div>
                         </div>
-
+                        @{
+                            var am = DAOLayer.PropertyDao.GetAmenitiesTypesWithSubTypes();
+                        }
                         <h4 class="info-text" style="font-weight: bold;"> General Amenities </h4>
                         <div class="row">
                             <div class="col-lg-10 col-lg-offset-1" id="AmenitiesTypes">
-                                @foreach (var type in ViewBag.amenitiesTypes)
+                                @foreach (var type in am)
                                 {
-                                    <div class="col-md-4">
-                                        <div class="checkbox checkbox-inline">
-                                            <label>
-                                                <input type="checkbox" name="@type.AmenitiesTypeId">
-                                                @type.AmenitiesTypeName
-                                            </label>
+                                    <h5>
+                                        @type.AmenitiesTypeName
+                                    </h5>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            @foreach (var subtype in type.AmenitiesType1)
+                                            {
+                                                <div class="col-md-4">
+                                                    <input type="checkbox" name="@subtype.AmenitiesTypeId">
+                                                    @subtype.AmenitiesTypeName
+                                                </div>
+                                            }
                                         </div>
                                     </div>
                                 }
                             </div>
-                        </div>
-
-                        <div class="col-md-12">
-                            <button onclick="priceClick('basic_infoLi')" data-toggle="tab" class="btn btn-default pull-left">
-                                Back
-                            </button>
-                            <button onclick="priceClick('descriptionLi')" data-toggle="tab" class="btn btn-info pull-right">
-                                Next
-                            </button>
                         </div>
                     </div>
                 </div>
@@ -631,12 +594,8 @@
                                     foreach (var type in ViewBag.TagTypes)
                                     {
                                         <div class="col-md-4">
-                                            <div class="checkbox checkbox-inline">
-                                                <label>
-                                                    <input type="checkbox" name="@type.TagId">
-                                                    @type.TagName
-                                                </label>
-                                            </div>
+                                            <input type="checkbox" name="@type.TagId">
+                                            @type.TagName
                                         </div>
                                     }
                                 }
@@ -644,16 +603,8 @@
                             <div class="col-sm-12">
                                 <div class="form-group label-floating">
                                     <label class="control-label">Write some description about Property</label>
-                                    <textarea name="model.description" id="editingData" class="form-control" rows="8"></textarea>
+                                    <textarea name="model.description" id="editingData" class="form-control" rows="15"></textarea>
                                 </div>
-                            </div>
-                            <div class="col-md-12">
-                                <button onclick="priceClick('amenitiesLi')" data-toggle="tab" class="btn btn-default pull-left">
-                                    Back
-                                </button>
-                                <button onclick="priceClick('photosLi')" data-toggle="tab" class="btn btn-info pull-right">
-                                    Next
-                                </button>
                             </div>
                         </div>
                     </div>
@@ -702,112 +653,49 @@
                                         </div>
                                     </div>
                                 </div>
+
+                                <div class="col-md-5 col-sm-8">
+                                    <h2><small>Featured Banner</small></h2>
+                                    <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+                                        <div class="fileinput-new thumbnail img-raised">
+                                            <img src="/Content/assets/img/image_placeholder.jpg" alt="...">
+                                        </div>
+                                        <div class="fileinput-preview fileinput-exists thumbnail img-raised"></div>
+                                        <div>
+                                            <span class="btn btn-raised btn-default btn-file">
+                                                <span class="fileinput-new">Select image</span>
+                                                <span class="fileinput-exists">Change</span>
+                                                <input type="file" name="featuredBanner">
+                                            </span>
+                                            <a href="#" class="btn btn-danger fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i> Remove</a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-5 col-sm-8">
+                                    <h2><small>Header Banner</small></h2>
+                                    <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+                                        <div class="fileinput-new thumbnail img-raised">
+                                            <img src="/Content/assets/img/image_placeholder.jpg" alt="...">
+                                        </div>
+                                        <div class="fileinput-preview fileinput-exists thumbnail img-raised"></div>
+                                        <div>
+                                            <span class="btn btn-raised btn-default btn-file">
+                                                <span class="fileinput-new">Select image</span>
+                                                <span class="fileinput-exists">Change</span>
+                                                <input type="file" name="headerBanner">
+                                            </span>
+                                            <a href="#" class="btn btn-danger fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i> Remove</a>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
 
-                            <div id="saveProject">
-                            </div>
-                            <div class="col-md-12">
-                                <button onclick="priceClick('descriptionLi')" data-toggle="tab" class="btn btn-default pull-left">
-                                    Back
-                                </button>
-                                <button onclick="priceClick('finishLi')" data-toggle="tab" class="btn btn-info pull-right">
-                                    Next
-                                </button>
-                            </div>
+                            <div id="saveProject"></div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="tab-pane hide" id="price">
-                <div class="row">
-                    <div class="card">
-                        <div class="card-content">
-                            <div class="card-title">
-                                <h2>Price Details</h2>
-                                <p>
-                                    Give Details Price For Full Year,Time Details will be ignored
-                                </p>
-                            </div>
-                            <div class="">
-
-                                <button id="addRateBtn" data-toggle="tab" class="btn btn-info pull-right">
-                                    Add Row
-                                </button>
-                                <table class="table">
-                                    <thead>
-                                    <tr>
-                                        <th>
-                                            Season Name
-                                        </th>
-                                        <th>
-                                            From
-                                        </th>
-                                        <th>
-                                            To
-                                        </th>
-                                        <th>
-                                            Price
-                                        </th>
-                                        <th>
-                                            Extra Guest Price
-                                        </th>
-                                        <th>
-                                            Minimum Stay
-                                        </th>
-                                    </tr>
-                                    </thead>
-                                    <tbody id="ratesList">
-                                        <tr>
-                                            <td>
-                                                <div class="form-group">
-                                                    <label class="label-control">Season Name</label>
-                                                    <input type="text" name="model.rates[0].SeasonName" class="form-control" />
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="form-group">
-                                                    <label class="label-control">Start Date</label>
-                                                    <input type="date" name="model.rates[0].sd" class="form-control datetimepicker" value="01/01/2016" />
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="form-group">
-                                                    <label class="label-control">End Date</label>
-                                                    <input type="date" name="model.rates[0].ed" class="form-control datetimepicker" value="31/12/2016" />
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="form-group is-empty">
-                                                    <input type="number" name="model.rates[0].price" value="" placeholder="Price" class="form-control">
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="form-group is-empty">
-                                                    <input type="number" name="model.rates[0].guest_price" value="" placeholder="Guest Price" class="form-control">
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="form-group is-empty">
-                                                    <input type="number" name="model.rates[0].minStay" value="" placeholder="Min. Price" class="form-control">
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div class="col-md-12">
-                                <button onclick="priceClick('photosLi')" data-toggle="tab" class="btn btn-default pull-left">
-                                    Back
-                                </button>
-                                <button onclick="priceClick('finishLi')" data-toggle="tab" class="btn btn-info pull-right">
-                                    Next
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
             <div class="tab-pane" id="finish">
                 <div class="row">
                     <div class="card">
@@ -816,9 +704,6 @@
                                 Save Property
                             </div>
                             <div class="col-md-12">
-                                <button onclick="priceClick('priceLi')" data-toggle="tab" class="btn btn-default pull-left">
-                                    Back
-                                </button>
                                 <button type="button" id="saveProjectbtn" class="btn btn-success pull-right">
                                     Finish
                                 </button>
@@ -829,22 +714,22 @@
             </div>
         </div>
     </form>
-    <div class="col-md-12">
-        <!-- blueimp File Upload & Gallery styles -->
-        <link rel="stylesheet" href="~/Content/jQuery.FileUpload/css/jquery.fileupload.css" />
-        <link rel="stylesheet" href="~/Content/jQuery.FileUpload/css/jquery.fileupload-ui.css" />
-        <link rel="stylesheet" href="~/Content/blueimp-gallery2/css/blueimp-gallery.css" />
-        <link rel="stylesheet" href="~/Content/blueimp-gallery2/css/blueimp-gallery-video.css" />
-        <link rel="stylesheet" href="~/Content/blueimp-gallery2/css/blueimp-gallery-indicator.css" />
-        <div id="innerformImages">
-            @Html.Partial("_Files")
-        </div>
+<div class="col-md-12">
+    @Styles.Render("~/Content/FileUpload")
+    
+    <!-- blueimp File Upload & Gallery styles -->
+    @*<link rel="stylesheet" href="~/Content/jQuery.FileUpload/css/jquery.fileupload.css"/>
+    <link rel="stylesheet" href="~/Content/jQuery.FileUpload/css/jquery.fileupload-ui.css"/>
+    <link rel="stylesheet" href="~/Content/blueimp-gallery2/css/blueimp-gallery.css"/>
+    <link rel="stylesheet" href="~/Content/blueimp-gallery2/css/blueimp-gallery-video.css"/>
+    <link rel="stylesheet" href="~/Content/blueimp-gallery2/css/blueimp-gallery-indicator.css"/>*@
+    
+    <div id="innerformImages">
+        @Html.Partial("_Files")
     </div>
 </div>
 </div>
-<
-
-<!--  Google Maps Plugin    -->
+</div>
 
 <script src="/Content/tinymce/tinymce.min.js"></script>
 <script>

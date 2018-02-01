@@ -89,7 +89,7 @@
         <span class="prod-cat">@Model.SubTitle</span>
         @if (Model.Price > 0)
         {
-            <h3 class="prod-price">Rs.@Model.Price @Model.PriceUnitName</h3>
+            <h3 class="prod-price">Rs.@Model.Price.ToString("##.###") @Model.PriceUnitName</h3>
         }
         else
         {
@@ -236,7 +236,7 @@
             </tr>
             <tr>
                 <td>Price</td>
-                <td>@Model.Price @Model.PriceUnitName</td>
+                <td>@Model.Price.ToString("##.###") @Model.PriceUnitName</td>
             </tr>
             <tr>
                 <td>Baths</td>
@@ -345,7 +345,7 @@
         $(document).ready(function () {
             $("#custom-prod-desc").html($("#custom-prod-desc").text());
         });
-        var myLatlng = new google.maps.LatLng(@Model.Latitude, @Model.Logitude);
+        var myLatlng = new google.maps.LatLng(@Model.Logitude, @Model.Latitude);
         var mapOptions = {
             zoom: 15,
             center: myLatlng,

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Data.Entity.Validation;
 using System.Linq;
 using System.Text;
@@ -51,11 +52,45 @@ namespace DAOLayer
                 return db.AmenitiesTypes.Where(p => p.ParentTypeId != null).ToList();
             }
         }
+
+        public static List<AmenitiesType> GetAmenitiesTypesWithSubTypes()
+        {
+            using (var db = new Model())
+            {
+                return db.AmenitiesTypes.Where(p => p.ParentTypeId == null)
+                    .Include(a => a.AmenitiesType1).ToList();
+            }
+        }
+
         public static Dictionary<int,AmenitiesType> GetAmenitiesTypesDictionary()
         {
             using (var db = new Model())
             {
                 return db.AmenitiesTypes.ToDictionary(k => k.AmenitiesTypeId, v => v);
+            }
+        }
+
+        public static void UpdateAmenity(AmenitiesType model)
+        {
+            using (var db = new Model())
+            {
+                if (model.AmenitiesTypeId > 0)
+                {
+                    db.Entry(model).State = EntityState.Modified;
+                }
+                else
+                {
+                    db.AmenitiesTypes.Add(model);
+                }
+
+                try
+                {
+                    db.SaveChanges();
+                }
+                catch (Exception e)
+                {
+                    // ignored
+                }
             }
         }
 
@@ -122,7 +157,11 @@ namespace DAOLayer
                         TypeId = model.propertyType,
                         Title = model.propertyname,
                         SubTitle = model.propertysubname,
-                        pdf = model.pdfFile
+                        pdf = model.pdfFile,
+                        isActive = true,
+                        FeaturedBanner = model.FeaturedBanner,
+                        HeaderBanner = model.HeaderBanner
+
                     };
                     db.Properties.Add(property);
                     db.SaveChanges();
@@ -164,6 +203,49 @@ namespace DAOLayer
                     return false;
                 }
 
+            }
+        }
+
+
+
+        public static bool RenewPropertyImages(int id, IEnumerable<string> imagesList)
+        {
+            using (var db = new Model())
+            {
+                try
+                {
+
+                    var list = db.Files.Where(f => f.FileTypeId == 1 && f.TypeId == id).ToList();
+                    db.Files.RemoveRange(list);
+
+                    db.SaveChanges();
+
+
+                    var files = imagesList.Select(img => new File()
+                    {
+                        FileName = img,
+                        FileTypeId = 1,
+                        FileTypeName = "property",
+                        mimeType = "image",
+                        Description = "--",
+                        onCreated = DateTime.Now,
+                        onModified = DateTime.Now,
+                        TypeId = id
+                    }).ToList();
+
+                    db.Files.AddRange(files);
+                    db.SaveChanges();
+
+                    return true;
+                }
+                catch (DbEntityValidationException e)
+                {
+                    return false;
+                }
+                catch (Exception e)
+                {
+                    return false;
+                }
             }
         }
 
@@ -403,6 +485,13 @@ namespace DAOLayer
                 return db.PropertyViews.ToList();
             }
         }
+        public static List<PropertyView> GetActivePropertiesList()
+        {
+            using (var db = new Model())
+            {
+                return db.PropertyViews.Where(p => p.isActive).ToList();
+            }
+        }
         public static List<PropertyView> GetPropertiesList(int ptid = 0)
         {
             using (var db = new Model())
@@ -410,6 +499,16 @@ namespace DAOLayer
                 return ptid == 0 
                     ? db.PropertyViews.ToList() 
                     : db.PropertyViews.Where(p => p.PropertyTypeId == ptid || p.ParentTypeId == ptid).ToList();
+            }
+        }
+
+        public static List<PropertyView> GetPropertiesListActive(int ptid = 0)
+        {
+            using (var db = new Model())
+            {
+                return ptid == 0
+                    ? db.PropertyViews.Where(p => p.isActive).ToList()
+                    : db.PropertyViews.Where(p => p.isActive && (p.PropertyTypeId == ptid || p.ParentTypeId == ptid)).ToList();
             }
         }
 
@@ -524,6 +623,102 @@ namespace DAOLayer
             using (var db = new Model())
             {
                 return db.PropertyReviews.Where(p => p.UserId == id).ToList();
+            }
+        }
+
+        public static bool Delete(int id)
+        {
+            using (var db = new Model())
+            {
+                var property = db.Properties.FirstOrDefault(p => p.PropertyId == id);
+                if (property == null) return false;
+
+                property.isActive = false;
+                try
+                {
+                    db.SaveChanges();
+                    return true;
+                }
+                catch (Exception e)
+                {
+                    return false;
+                }
+            }
+        }
+
+        public static PropertyBasicInfo GetPropertyBasicInfo(int id)
+        {
+            using (var db = new Model())
+            {
+                var property = db.Properties.FirstOrDefault(p => p.PropertyId == id);
+                if (property == null) return null;
+                return new PropertyBasicInfo()
+                {
+                    propertyname = property.Title,
+                    area = (float) property.Area,
+                    areaUnit = property.AreaUnit,
+                    city = property.Location.CityId,
+                    country = property.Location.city.CountryID,
+                    latitude = property.Location.Latitude,
+                    longitude = property.Location.Logitude,
+                    postalcode = property.Location.ZipCode,
+                    price = (float)property.Price,
+                    priceUnit = property.PriceUnit,
+                    propertyId = property.PropertyId,
+                    propertyType = property.TypeId,
+                    propertysubname = property.SubTitle,
+                    street = property.Location.StreetName
+                };
+            }
+
+        }
+
+        public static PropertyExtrasViewModel GetPropertyExtrasViewModel(int id)
+        {
+            using (var db = new Model())
+            {
+                var property = db.Properties.FirstOrDefault(p => p.PropertyId == id);
+                if (property == null) return null;
+                return new PropertyExtrasViewModel()
+                {
+                    PropertyId = id,
+                    PdfFile = property.pdf,
+                    FeaturedBanner = property.FeaturedBanner,
+                    HeaderBanner = property.HeaderBanner,
+                    Banner = property.Banner,
+                    VideoUrl = property.VideoURL
+                };
+            }
+        }
+
+        public static bool SavePropertyExtrasViewModel(int id, PropertyExtrasViewModel model)
+        {
+            if (id <= 0)
+                return false;
+            using (var db = new Model())
+            {
+                var property = db.Properties.FirstOrDefault(p => p.PropertyId == id);
+                if (property == null) return false;
+
+                if (!string.IsNullOrWhiteSpace(model.Banner))
+                    property.Banner = model.Banner;
+                if (!string.IsNullOrWhiteSpace(model.FeaturedBanner))
+                    property.FeaturedBanner = model.FeaturedBanner;
+                if (!string.IsNullOrWhiteSpace(model.HeaderBanner))
+                    property.HeaderBanner = model.HeaderBanner;
+                if (!string.IsNullOrWhiteSpace(model.PdfFile))
+                    property.HeaderBanner = model.PdfFile;
+
+                property.VideoURL = model.VideoUrl;
+                try
+                {
+                    db.SaveChanges();
+                    return true;
+                }
+                catch (Exception e)
+                {
+                    return false;
+                }
             }
         }
     }

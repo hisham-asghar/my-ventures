@@ -60,6 +60,18 @@ namespace CustomModels.PropertyModels
         public long postalcode { get; set; }
 
     }
+
+    public class PropertyExtrasViewModel
+    {
+        public int PropertyId { get; set; }
+        public string VideoUrl { get; set; }
+        public string PdfFile { get; set; }
+        public string Banner { get; set; }
+        public string FeaturedBanner { get; set; }
+        public string HeaderBanner { get; set; }
+    }
+
+
     public class PropertiesModel : PropertyBasicInfo
     {
         public int spacem2 { get; set; }
@@ -71,9 +83,11 @@ namespace CustomModels.PropertyModels
         public string videoURL { get; set; }
         public string pdfFile { get; set; }
         public string banner { get; set; }
+        public string FeaturedBanner { get; set; }
         public List<int> amenities { get; set; }
         public List<int> tags { get; set; }
         public List<string> ImagesList { get; set; }
+        public string HeaderBanner { get; set; }
     }
     public class PropertiesModelGetter
     {

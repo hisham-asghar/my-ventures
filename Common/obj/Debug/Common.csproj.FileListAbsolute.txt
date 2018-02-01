@@ -1,5 +1,0 @@
-C:\Users\taghe\Documents\Git\myventures\Common\bin\Debug\Common.dll
-C:\Users\taghe\Documents\Git\myventures\Common\bin\Debug\Common.pdb
-C:\Users\taghe\Documents\Git\myventures\Common\obj\Debug\Common.csprojResolveAssemblyReference.cache
-C:\Users\taghe\Documents\Git\myventures\Common\obj\Debug\Common.dll
-C:\Users\taghe\Documents\Git\myventures\Common\obj\Debug\Common.pdb

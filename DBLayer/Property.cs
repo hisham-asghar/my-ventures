@@ -58,7 +58,12 @@ namespace DBLayer
         [StringLength(256)]
         public string Banner { get; set; }
 
+        [StringLength(256)]
+        public string FeaturedBanner { get; set; }
+
         public bool isActive { get; set; }
+
+        public bool isSold { get; set; }
 
         [StringLength(1024)]
         public string VideoURL { get; set; }
@@ -80,5 +85,8 @@ namespace DBLayer
         public virtual Unit Unit { get; set; }
 
         public virtual ICollection<PropertyReview> PropertyReviews { get; set; }
+        
+        [StringLength(256)]
+        public string HeaderBanner { get; set; }
     }
 }

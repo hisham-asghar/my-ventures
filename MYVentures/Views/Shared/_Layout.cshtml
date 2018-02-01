@@ -8,7 +8,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Favicon -->
     <link rel="shortcut icon" href="favicon.ico">
-    @Styles.Render("~/Content/css")
+    @*@Styles.Render("~/Content/css")*@
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="favicon.ico">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="/Content/assets/styles/vendor/bootstrap.min.css">
+    <!-- Fonts -->
+    <link rel="stylesheet" href="/Content/assets/fonts/et-lineicons/css/style.css">
+    <link rel="stylesheet" href="/Content/assets/fonts/linea-font/css/linea-font.css">
+    <link rel="stylesheet" href="/Content/assets/fonts/fontawesome/css/font-awesome.min.css">
+    <!-- Slider -->
+    <link rel="stylesheet" href="/Content/assets/styles/vendor/slick.css">
+    <!-- Lightbox -->
+    <link rel="stylesheet" href="/Content/assets/styles/vendor/magnific-popup.css">
+    <!-- Animate.css -->
+    <link rel="stylesheet" href="/Content/assets/styles/vendor/animate.css">
+    <!-- Animated Headings -->
+    <link rel="stylesheet" href="/Content/assets/styles/vendor/animated-heading.css">
+    <!-- Range Slider -->
+    <link rel="stylesheet" href="/Content/assets/styles/vendor/jquery-ui.min.css">
+    <link rel="stylesheet" href="/Content/assets/styles/vendor/jquery-ui.structure.min.css">
+
+    <!-- Definity CSS -->
+    <link rel="stylesheet" href="/Content/assets/styles/main.css">
+    <link rel="stylesheet" href="/Content/assets/styles/custom.css">
+    <link rel="stylesheet" href="/Content/assets/styles/responsive.css">
+
+    <script src="/Content/assets/js/vendor/modernizr-2.8.3.min.js"></script>
+    <script src="/Content/assets/js/vendor/jquery-2.1.4.min.js"></script>
+    
+    
+    <script type="text/javascript" src="/Content/assets/js/vendor/jquery.lazy.min.js"></script>
+    <script type="text/javascript" src="/Content/assets/js/vendor/jquery.lazy.plugins.min.js"></script>
 </head>
 <body id="page-top" class="@ViewBag.MainClass">
     <!--[if lt IE 8]>
@@ -23,10 +54,39 @@
     @Html.Partial("_Navbar")
     @RenderBody()
     @Html.Partial("_Footer")
-    <script type="text/javascript"
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB50rvSH-KSG8eiELjmwTFBgFrb19XnD9Q"></script>
+@*<script type="text/javascript"
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyClXE90_oSRWGoewdjFzTqgE5wiIg48oJo"></script>
 
-    @Scripts.Render("~/Content/js")
+    @Scripts.Render("~/Content/js")*@
+    <script src="/Content/assets/js/vendor/webp.js"></script>
+    <script src="/Content/assets/js/vendor/font-awesome-all.js"></script>
+<script src="/Content/assets/js/vendor/google-fonts.js"></script>
+    <script src="/Content/assets/js/vendor/jquery.easing.js"></script>
+    <script src="/Content/assets/js/vendor/jquery.waypoints.min.js"></script>
+    <script src="/Content/assets/js/vendor/bootstrap.min.js"></script>
+    <script src="/Content/assets/js/vendor/bootstrap-hover-dropdown.min.js"></script>
+    <script src="/Content/assets/js/vendor/smoothscroll.js"></script>
+    <script src="/Content/assets/js/vendor/jquery.localScroll.min.js"></script>
+    <script src="/Content/assets/js/vendor/jquery.scrollTo.min.js"></script>
+    <script src="/Content/assets/js/vendor/jquery.stellar.min.js"></script>
+    <script src="/Content/assets/js/vendor/jquery.parallax.js"></script>
+    <script src="/Content/assets/js/vendor/slick.min.js"></script>
+    <script src="/Content/assets/js/vendor/jquery.easypiechart.min.js"></script>
+    <script src="/Content/assets/js/vendor/countup.min.js"></script>
+    <script src="/Content/assets/js/vendor/isotope.min.js"></script>
+    <script src="/Content/assets/js/vendor/jquery.magnific-popup.min.js"></script>
+    <script src="/Content/assets/js/vendor/jquery-ui.min.js"></script>
+    <script src="/Content/assets/js/vendor/wow.js"></script>
+    <script src="/Content/assets/js/vendor/animated-heading.js"></script>
+    <script src="/Content/assets/js/vendor/kenburns.js"></script>
+    <script src="/Content/assets/js/vendor/jquery.mb.YTPlayer.min.js"></script>
+    <script src="/Content/assets/js/vendor/jquery.ajaxchimp.js"></script>
+    <!-- Google Maps -->
+    <script type="text/javascript"
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB50rvSH-KSG8eiELjmwTFBgFrb19XnD9Q"></script>
+    <!-- Definity JS -->
+<script src="/Content/assets/js/main.js"></script>
+<script src="/Content/assets/js/custom.js"></script>
     @RenderSection("scripts", required: false)
 </body>
 </html>

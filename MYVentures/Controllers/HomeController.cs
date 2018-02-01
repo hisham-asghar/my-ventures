@@ -123,7 +123,8 @@ namespace MYVentures.Controllers
 
             var headerList = new List<MainPageSection2>();
             var imageList = new List<string>();
-            for(var i = 1 ; i <= 5; i++)
+            var headerData = new List<MainPageHeaderSection>();
+            for (var i = 1 ; i <= 5; i++)
             {
                 
                 var sectionItem = new MainPageSection2
@@ -137,8 +138,15 @@ namespace MYVentures.Controllers
                 var str = CustomActions.GetUploadLocation() + (sectionItem.link == "" ? "image_placeholder.jpg" : sectionItem.link);
                 imageList.Add(str);
                 headerList.Add(sectionItem);
+                headerData.Add(new MainPageHeaderSection()
+                {
+                    path = str,
+                    text = sectionItem.text,
+                    title = sectionItem.head
+                });
             }
             ViewBag.HeaderList = headerList;
+            ViewBag.ServiceHead = JsonConvert.SerializeObject(headerData);
 
             ViewBag.imgList = JsonConvert.SerializeObject(imageList);             
 
@@ -182,6 +190,7 @@ namespace MYVentures.Controllers
 
             ViewBag.open = Helper.getDicData(listSection, "contact_open");
             ViewBag.email = Helper.getDicData(listSection, "contact_email");
+            ViewBag.AddressBackgroundImage = Helper.getDicData(listSection, "section_address_background_image");
 
             return View();
         }

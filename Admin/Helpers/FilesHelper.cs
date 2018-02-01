@@ -40,7 +40,7 @@ namespace Admin.Helpers
                 DirectoryInfo di = new DirectoryInfo(path);
                 foreach (FileInfo fi in di.GetFiles())
                 {
-                    System.IO.File.Delete(fi.FullName);
+                    File.Delete(fi.FullName);
                     System.Diagnostics.Debug.WriteLine(fi.Name);
                 }
 
@@ -56,27 +56,28 @@ namespace Admin.Helpers
 
             string fullPath = Path.Combine(StorageRoot, file);
             System.Diagnostics.Debug.WriteLine(fullPath);
-            System.Diagnostics.Debug.WriteLine(System.IO.File.Exists(fullPath));
+            System.Diagnostics.Debug.WriteLine(File.Exists(fullPath));
             string thumbPath = "/" + file + "80x80.jpg";
             string partThumb1 = Path.Combine(StorageRoot, "thumbs");
             string partThumb2 = Path.Combine(partThumb1, file + "80x80.jpg");
 
             System.Diagnostics.Debug.WriteLine(partThumb2);
-            System.Diagnostics.Debug.WriteLine(System.IO.File.Exists(partThumb2));
-            if (System.IO.File.Exists(fullPath))
+            System.Diagnostics.Debug.WriteLine(File.Exists(partThumb2));
+            if (File.Exists(fullPath))
             {
                 //delete thumb 
-                if (System.IO.File.Exists(partThumb2))
+                if (File.Exists(partThumb2))
                 {
-                    System.IO.File.Delete(partThumb2);
+                    File.Delete(partThumb2);
                 }
-                System.IO.File.Delete(fullPath);
+                File.Delete(fullPath);
                 string succesMessage = "Ok";
                 return succesMessage;
             }
             string failMessage = "Error Delete";
             return failMessage;
         }
+
         public JsonFiles GetFileList()
         {
 
@@ -103,7 +104,7 @@ namespace Admin.Helpers
             var httpRequest = ContentBase.Request;
             System.Diagnostics.Debug.WriteLine(Directory.Exists(tempPath));
 
-            string fullPath = Path.Combine(StorageRoot);
+            var fullPath = Path.Combine(StorageRoot);
             Directory.CreateDirectory(fullPath);
             // Create new folder for thumbs
             Directory.CreateDirectory(fullPath + "/thumbs/");
@@ -114,7 +115,7 @@ namespace Admin.Helpers
                 var headers = httpRequest.Headers;
 
                 var file = httpRequest.Files[inputTagName];
-                System.Diagnostics.Debug.WriteLine(file.FileName);
+                if (file != null) System.Diagnostics.Debug.WriteLine(file.FileName);
 
                 if (string.IsNullOrEmpty(headers["X-File-Name"]))
                 {
@@ -132,32 +133,40 @@ namespace Admin.Helpers
 
         private void UploadWholeFile(HttpContextBase requestContext, List<ViewDataUploadFilesResult> statuses)
         {
-
             var request = requestContext.Request;
-            for (int i = 0; i < request.Files.Count; i++)
+            for (var i = 0; i < request.Files.Count; i++)
             {
                 var file = request.Files[i];
                 var fileGuid = Guid.NewGuid().ToString();
-                string pathOnServer = Path.Combine(StorageRoot);
-                string _getType = "." + file.FileName.Substring(file.FileName.LastIndexOf(".", StringComparison.Ordinal) + 1);
-                var fullPath = Path.Combine(pathOnServer, Path.GetFileName(fileGuid) + _getType);
+                var pathOnServer = Path.Combine(StorageRoot);
+                var getType = "." + file.FileName.Substring(file.FileName.LastIndexOf(".", StringComparison.Ordinal) + 1);
+                var fullPath = Path.Combine(pathOnServer, Path.GetFileName(fileGuid) + getType);
                 file.SaveAs(fullPath);
-
+                var handler = new ImageHandler();
+                try
+                {
+                    // handler.Save(ImageHandler.LoadImage(fullPath), 800, 450, 100, fullPath);
+                }
+                catch (Exception)
+                {
+                    // ignored
+                }
                 //Create thumb
-                string[] imageArray = file.FileName.Split('.');
+                var imageArray = file.FileName.Split('.');
                 if (imageArray.Length != 0)
                 {
                     var extansion = imageArray[imageArray.Length - 1].ToLower();
                     if (extansion == "jpg" || extansion == "png" || extansion == "jpeg")
                     {
-                        var ThumbfullPath = Path.Combine(pathOnServer, "thumbs");
+                        var thumbfullPath = Path.Combine(pathOnServer, "thumbs");
                         //String fileThumb = file.FileName + ".80x80.jpg";
-                        string fileThumb = Path.GetFileNameWithoutExtension(fileGuid) + "80x80.jpg";
-                        var ThumbfullPath2 = Path.Combine(ThumbfullPath, fileThumb);
-                        using (MemoryStream stream = new MemoryStream(System.IO.File.ReadAllBytes(fullPath)))
+                        var fileThumb = Path.GetFileNameWithoutExtension(fileGuid) + "80x80.jpg";
+                        var thumbfullPath2 = Path.Combine(thumbfullPath, fileThumb);
+                        using (var stream = new MemoryStream(System.IO.File.ReadAllBytes(fullPath)))
                         {
-                            var thumbnail = new WebImage(stream).Resize(60, 90);
-                            thumbnail.Save(ThumbfullPath2, "jpg");
+                            var webImage = new WebImage(stream);
+                            var thumbnail = webImage.Resize(80, 80);
+                            thumbnail.Save(thumbfullPath2, "jpg");
                         }
                     }
                 }
@@ -196,25 +205,26 @@ namespace Admin.Helpers
             }
             statuses.Add(UploadResult(file.FileName, file.ContentLength, file.FileName, fileGuid));
         }
-        public ViewDataUploadFilesResult UploadResult(string FileName, int fileSize, string FileFullPath, string ShortPath)
+
+        public ViewDataUploadFilesResult UploadResult(string fileName, int fileSize, string fileFullPath, string shortPath)
         {
-            string getType = FileFullPath.Substring(FileFullPath.LastIndexOf("."));
-            string _getType = getType.Substring(getType.LastIndexOf("/", StringComparison.Ordinal) + 1);
-            var result = new ViewDataUploadFilesResult()
+            var getType = fileFullPath.Substring(fileFullPath.LastIndexOf(".", StringComparison.Ordinal));
+            var fileExtension = getType.Substring(getType.LastIndexOf("/", StringComparison.Ordinal) + 1);
+            var result = new ViewDataUploadFilesResult
             {
-                name = FileName,
+                name = fileName,
                 size = fileSize,
                 type = getType,
-                url = UrlBase + ShortPath + _getType,
-                deleteUrl = DeleteURL + ShortPath + _getType,
-                thumbnailUrl = CheckThumb(getType, ShortPath + _getType),
+                url = UrlBase + shortPath + fileExtension,
+                deleteUrl = DeleteURL + shortPath + fileExtension,
+                thumbnailUrl = CheckThumb(getType, shortPath + fileExtension),
                 deleteType = DeleteType,
-                guid = ShortPath + _getType
+                guid = shortPath + fileExtension
             };
             return result;
         }
 
-        public string CheckThumb(string type, string FileName)
+        public string CheckThumb(string type, string fileName)
         {
             var splited = type.Split('/');
             if (splited.Length == 2)
@@ -222,7 +232,7 @@ namespace Admin.Helpers
                 string extansion = splited[1].ToLower();
                 if (extansion.Equals("jpeg") || extansion.Equals("jpg") || extansion.Equals("png") || extansion.Equals("gif"))
                 {
-                    string thumbnailUrl = UrlBase + "thumbs/" + Path.GetFileNameWithoutExtension(FileName) + "80x80.jpg";
+                    string thumbnailUrl = UrlBase + "thumbs/" + Path.GetFileNameWithoutExtension(fileName) + "80x80.jpg";
                     return thumbnailUrl;
                 }
                 else
@@ -240,8 +250,9 @@ namespace Admin.Helpers
                     return thumbnailUrl;
                 }
             }
-            return UrlBase + "/thumbs/" + Path.GetFileNameWithoutExtension(FileName) + "80x80.jpg";
+            return UrlBase + "/thumbs/" + Path.GetFileNameWithoutExtension(fileName) + "80x80.jpg";
         }
+
         public List<string> FilesList()
         {
 

@@ -1,9 +1,0 @@
-C:\Users\taghe\Documents\Git\myventures\CustomModels\bin\Release\CustomModels.dll
-C:\Users\taghe\Documents\Git\myventures\CustomModels\bin\Release\CustomModels.pdb
-C:\Users\taghe\Documents\Git\myventures\CustomModels\bin\Release\DBLayer.dll
-C:\Users\taghe\Documents\Git\myventures\CustomModels\bin\Release\EntityFramework.dll
-C:\Users\taghe\Documents\Git\myventures\CustomModels\bin\Release\DBLayer.pdb
-C:\Users\taghe\Documents\Git\myventures\CustomModels\bin\Release\EntityFramework.xml
-C:\Users\taghe\Documents\Git\myventures\CustomModels\obj\Release\CustomModels.csprojResolveAssemblyReference.cache
-C:\Users\taghe\Documents\Git\myventures\CustomModels\obj\Release\CustomModels.dll
-C:\Users\taghe\Documents\Git\myventures\CustomModels\obj\Release\CustomModels.pdb

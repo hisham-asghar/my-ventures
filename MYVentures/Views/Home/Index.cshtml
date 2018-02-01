@@ -4,7 +4,7 @@
     ViewBag.MainClass = "main_landing";
 }
    <!-- ========== Hero Cover ========== -->
-<div class="kenburn-hero animated-hero" image-data="@Html.Raw(ViewBag.imgList)">
+<div class="kenburn-hero animated-hero" image-data-kenburn="@ViewBag.ServiceHead">
     <div class="kenburn-slider bg-overlay">
 
         <!-- Heading -->
@@ -12,23 +12,10 @@
 
             <!-- Hero Content -->
             <div class="hero-content ">
-
-                <h1 class="cd-headline zoom hero-lead">
-                    <span class="cd-words-wrapper">
-                        @{ var vflag = true; }
-                        @foreach(var ms in ViewBag.HeaderList)
-                        {
-                            <b class='@(vflag ? "is-visible" : "" )'>
-                                @ms.head
-                                <p>@Html.Raw(ms.text)</p>
-                                @{ vflag = false; }
-                            </b>
-                        }
-                    </span>
-                </h1>
-
+                <h1 class="title-data"></h1>
+                <h4 class="text-data"></h4>
+                <br /><br /><br /><br /><br /><br />
             </div>
-
         </div><!-- / .hero-wrapper -->
         <!-- Ken Burns Slider -->
         <canvas class="kenburns">
@@ -45,7 +32,7 @@
         <header class="sec-heading">
             <h2>Welcome to MY Ventures</h2>
             <span class="subheading">@ViewBag.Whead.MetaText</span>
-        /</header>
+        </header>
         <div class="col-md-offset-2 col-md-8 text-center ws-m">@Html.Raw(ViewBag.Wtext.MetaText)</div>
         <div class="col-md-12">
             <img class="img-responsive wow fadeIn" data-wow-duration="2s" alt="MYVentures Welcome Image"
@@ -59,8 +46,8 @@
         <div class="row">
 
             <header class="sec-heading">
-                <h2>More exclusive offers</h2>
-                <span class="subheading">Check out our more exclusive offers what were up to</span>
+                <h2>MY exclusive offers</h2>
+                <span class="subheading">Check out our more exclusive offers</span>
             </header>
 
             <!-- Blog Post 1 -->
@@ -78,7 +65,7 @@
                         <!-- Blurb -->
                         <p>@ViewBag.Etext1.MetaText</p>
                         <!-- Link -->
-                        <a href="@ViewBag.Elink1.MetaText" class=" btn btn-small">Learn More</a>
+                        <a href="@ViewBag.Elink1.MetaText" class="website-btn-link btn btn-small">Learn More</a>
                     </div><!-- / .bp-content -->
                 </div><!-- / .blog-post -->
             </div><!-- / .col-lg-4 -->
@@ -97,7 +84,7 @@
                         <!-- Blurb -->
                         <p>@ViewBag.Etext2.MetaText</p>
                         <!-- Link -->
-                        <a href="@ViewBag.Elink2.MetaText" class="btn btn-small">Learn More</a>
+                        <a href="@ViewBag.Elink2.MetaText" class="website-btn-link btn btn-small">Learn More</a>
                     </div><!-- / .bp-content -->
                 </div><!-- / .blog-post -->
             </div><!-- / .col-lg-4 -->
@@ -116,7 +103,7 @@
                         <!-- Blurb -->
                         <p>@ViewBag.Etext3.MetaText</p>
                         <!-- Link -->
-                        <a href="@ViewBag.Elink3.MetaText" class="btn btn-small">Learn More</a>
+                        <a href="@ViewBag.Elink3.MetaText" class="website-btn-link btn btn-small">Learn More</a>
                     </div><!-- / .bp-content -->
                 </div><!-- / .blog-post -->
             </div><!-- / .col-lg-4 -->
@@ -167,7 +154,7 @@
                             <div class="gmap map-boxed project"></div>
                         </div>
                         <!-- Link -->
-                        <a href="/MYHomes/Detail" class="btn btn-small">View Project</a>
+                        <a href="/MYHomes/Detail" class="website-btn-link btn btn-small">View Project</a>
                     </div><!-- / .bp-content -->
                 </div>
             </div>
@@ -198,7 +185,7 @@
                             <div class="gmap map-boxed project"></div>
                         </div>
                         <!-- Link -->
-                        <a href="/MYHomes/Detail" class="btn btn-small">View Project</a>
+                        <a href="/MYHomes/Detail" class="website-btn-link btn btn-small">View Project</a>
                     </div><!-- / .bp-content -->
                 </div>
             </div>
@@ -225,10 +212,10 @@
                             Premium villas in an international golf community
                         </p>
                         <div>
-                            <div class="gmap map-boxed project" ></div>
+                            <div class="gmap map-boxed project" lat="31.4640581" lng="74.3859547"></div>
                         </div>
                         <!-- Link -->
-                        <a href="/MYHomes/Detail" class="btn btn-small">View Project</a>
+                        <a href="/MYHomes/Detail" class="website-btn-link btn btn-small">View Project</a>
                     </div><!-- / .bp-content -->
                 </div>
             </div>
@@ -256,7 +243,7 @@
         <div class="container">
             <div class="row ws-m">
                 <!-- Address Info -->
-                <div class="col-xs-offset-1 col-xs-11 col-md-offset-2 col-md-6 contact-info-wrapper">
+                <div class="col-xs-offset-1 col-xs-11 col-md-offset-2 col-md-6 contact-info-wrapper lazy" data-src="@(ViewBag.UploadLocation +"/"+ (ViewBag.AddressBackgroundImage == null ? "" : ViewBag.AddressBackgroundImage.MetaText))">
                     <address>
                         <div class="row">
                             <!-- Phone -->
@@ -284,7 +271,11 @@
                         </div><!-- / .row -->
                         <!-- Show Map Button -->
                         <div class="row show-map-link">
-                            <a href="#" class="show-map"><span class="icon-map-pin"></span>Show on map</a>
+                            <a href="#" class="website-btn-link show-map">
+                                <span class="icon-map-pin"></span>
+                                <i class="fas fa-map-marker-alt"></i>
+                                Show on map
+                            </a>
                         </div><!-- / .row -->
                     </address>
                 </div><!-- / .contact-info-wrapper -->

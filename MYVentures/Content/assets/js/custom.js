@@ -1,5 +1,6 @@
 ﻿$(document).ready(function() {
     var $body = $("body");
+    $('.lazy').lazy();
     if ($body.hasClass("main_landing")) {
         MainLandingFunc();
     }
@@ -14,7 +15,7 @@ function MainLandingFunc()
 
             var wHeight = $(window).height();
             var w_width = $(window).width();
-            var imagesListKB = JSON.parse($(".kenburn-hero.animated-hero").attr("image-data"));
+            var imagesListKB = JSON.parse($(".kenburn-hero.animated-hero").attr("image-data-kenburn"));
             $('.kenburns').attr('width', w_width);
             $('.kenburns').attr('height', wHeight);
             $('.kenburns').kenburns({
@@ -47,7 +48,7 @@ function MainLandingFunc()
         zoom: 15,
         center: myLatlng,
         scrollwheel: false, //we disable de scroll over the map, it is a really annoing when you scroll through page
-
+        disableDefaultUI: true,
         // Styling of the map in JSON object
         styles: [{ "featureType": "administrative", "elementType": "labels.text.fill", "stylers": [{ "color": "#444444" }] }, { "featureType": "landscape", "elementType": "all", "stylers": [{ "color": "#f2f2f2" }] }, { "featureType": "poi", "elementType": "all", "stylers": [{ "visibility": "off" }] }, { "featureType": "road", "elementType": "all", "stylers": [{ "saturation": -100 }, { "lightness": 45 }] }, { "featureType": "road.highway", "elementType": "all", "stylers": [{ "visibility": "simplified" }] }, { "featureType": "road.arterial", "elementType": "labels.icon", "stylers": [{ "visibility": "off" }] }, { "featureType": "transit", "elementType": "all", "stylers": [{ "visibility": "off" }] }, { "featureType": "water", "elementType": "all", "stylers": [{ "color": "#cdd2d4" }, { "visibility": "on" }] }]
     };
@@ -61,4 +62,21 @@ function MainLandingFunc()
     });
 
     marker.setMap(map);
+    $(".gmap.map-boxed.project").each(function () {
+        var latitude = $(this).attr("lat");
+        var longitude = $(this).attr("lng");
+        var mapTitle = $(this).attr("map-title");
+        var projectMap = new google.maps.Map($(this).get(0), mapOptions);
+
+        var marker = new google.maps.Marker({
+            position: new google.maps.LatLng(latitude, longitude),
+            icon: '/Content/MY/My2.png',
+            title: mapTitle
+        });
+    })
+
+    $(".contact-info-wrapper").each(function() {
+        $(this).css("background-image", "url('" + $(this).attr("bg-img") + "')")
+        $(this).removeAttr("bg-img")
+    })
 }

@@ -19,7 +19,6 @@
 (function($){
 	
 	$.fn.kenburns = function(options) {
-		
 		var $canvas = $(this);
 		var ctx = this[0].getContext('2d');
 		var start_time = null;
@@ -38,9 +37,13 @@
 		
 		var images = [];
 		$(image_paths).each(function(i, image_path){
-			images.push({path:image_path,
-						 initialized:false,
-						 loaded:false});
+		    images.push({
+		        path: image_path.path,
+		        title: image_path.title,
+		        text: image_path.text,
+		        initialized: false,
+		        loaded: false
+		    });
 		});		
 		function get_time() {
 			var d = new Date();
@@ -153,6 +156,8 @@
 					ctx.save();
 					ctx.globalAlpha = Math.min(1, transparency);
 					ctx.drawImage(image_info.image, r[0], r[1], r[2] - r[0], r[3] - r[1], 0, 0, width, height);
+					$(".kenburn-hero .hero-content .title-data").text(image_info.title)
+					$(".kenburn-hero .hero-content .text-data").text(image_info.text)
 					ctx.restore();
 				}
 			}

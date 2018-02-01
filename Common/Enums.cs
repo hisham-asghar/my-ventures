@@ -23,5 +23,12 @@ namespace Common
             LastCacheUpdate,
             MyProperties
         }
+        public enum FileType
+        {
+            None,
+            Property,
+            Map,
+            Download
+        }
     }
 }

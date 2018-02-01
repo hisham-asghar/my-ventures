@@ -20,6 +20,7 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -293,6 +294,7 @@
     <Content Include="Content\assets\js\bootstrap.min.js" />
     <Content Include="Content\assets\js\chartist.min.js" />
     <Content Include="Content\assets\js\demo.js" />
+    <Content Include="Content\assets\js\font-awesome-all.js" />
     <Content Include="Content\assets\js\fullcalendar.min.js" />
     <Content Include="Content\assets\js\jasny-bootstrap.min.js" />
     <Content Include="Content\assets\js\jquery-3.1.1.min.js" />
@@ -765,8 +767,8 @@
     <Content Include="Views\MyProperty\AddNew.cshtml" />
     <Content Include="Views\MyProperty\AdvancedSettings.cshtml" />
     <Content Include="Views\MyProperty\AvailabilityAndPrices.cshtml" />
-    <Content Include="Views\MyProperty\City.cshtml" />
-    <Content Include="Views\MyProperty\CityEdit.cshtml" />
+    <Content Include="Views\MyProperty\Amenties.cshtml" />
+    <Content Include="Views\MyProperty\UpdateAmenities.cshtml" />
     <Content Include="Views\MyProperty\Edit.cshtml" />
     <Content Include="Views\MyProperty\Index.cshtml" />
     <Content Include="Views\MyProperty\MultiCalendar.cshtml" />
@@ -791,6 +793,8 @@
     <Content Include="Views\Home\CeoMessage.cshtml" />
     <Content Include="Views\History\Index.cshtml" />
     <Content Include="Views\History\Update.cshtml" />
+    <Content Include="Views\Home\AddressBackground.cshtml" />
+    <Content Include="Views\MyProperty\UpdateAllImages.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

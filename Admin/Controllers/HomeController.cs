@@ -65,22 +65,22 @@ namespace Admin.Controllers
                 }
             }
 
-            var listSection = DAOLayer.SiteMetaDAO.getMetaChilds("Index_Section_Exclusive");
+            var listSection = SiteMetaDAO.getMetaChilds("Index_Section_Exclusive");
 
-            ViewBag.img1 = CustomModels.Helper.getDicData(listSection, "section_Exclusive_1_img");
-            ViewBag.head1 = CustomModels.Helper.getDicData(listSection, "section_Exclusive_1_head");
-            ViewBag.text1 = CustomModels.Helper.getDicData(listSection, "section_Exclusive_1_text");
-            ViewBag.link1 = CustomModels.Helper.getDicData(listSection, "section_Exclusive_1_link");
+            ViewBag.img1 = Helper.getDicData(listSection, "section_Exclusive_1_img");
+            ViewBag.head1 = Helper.getDicData(listSection, "section_Exclusive_1_head");
+            ViewBag.text1 = Helper.getDicData(listSection, "section_Exclusive_1_text");
+            ViewBag.link1 = Helper.getDicData(listSection, "section_Exclusive_1_link");
 
-            ViewBag.img2 = CustomModels.Helper.getDicData(listSection, "section_Exclusive_2_img");
-            ViewBag.head2 = CustomModels.Helper.getDicData(listSection, "section_Exclusive_2_head");
-            ViewBag.text2 = CustomModels.Helper.getDicData(listSection, "section_Exclusive_2_text");
-            ViewBag.link2 = CustomModels.Helper.getDicData(listSection, "section_Exclusive_2_link");
+            ViewBag.img2 = Helper.getDicData(listSection, "section_Exclusive_2_img");
+            ViewBag.head2 = Helper.getDicData(listSection, "section_Exclusive_2_head");
+            ViewBag.text2 = Helper.getDicData(listSection, "section_Exclusive_2_text");
+            ViewBag.link2 = Helper.getDicData(listSection, "section_Exclusive_2_link");
 
-            ViewBag.img3 = CustomModels.Helper.getDicData(listSection, "section_Exclusive_3_img");
-            ViewBag.head3 = CustomModels.Helper.getDicData(listSection, "section_Exclusive_3_head");
-            ViewBag.text3 = CustomModels.Helper.getDicData(listSection, "section_Exclusive_3_text");
-            ViewBag.link3 = CustomModels.Helper.getDicData(listSection, "section_Exclusive_3_link");
+            ViewBag.img3 = Helper.getDicData(listSection, "section_Exclusive_3_img");
+            ViewBag.head3 = Helper.getDicData(listSection, "section_Exclusive_3_head");
+            ViewBag.text3 = Helper.getDicData(listSection, "section_Exclusive_3_text");
+            ViewBag.link3 = Helper.getDicData(listSection, "section_Exclusive_3_link");
 
             return View();
         }
@@ -120,14 +120,45 @@ namespace Admin.Controllers
                 }, parents);
             }
 
-            var listSection = DAOLayer.SiteMetaDAO.getMetaChilds("Index_Section_Welcome");
+            var listSection = SiteMetaDAO.getMetaChilds("Index_Section_Welcome");
 
-            ViewBag.img = CustomModels.Helper.getDicData(listSection, "section_welcome_img");
-            ViewBag.head = CustomModels.Helper.getDicData(listSection, "section_welcome_head");
-            ViewBag.text = CustomModels.Helper.getDicData(listSection, "section_welcome_text");
+            ViewBag.img = Helper.getDicData(listSection, "section_welcome_img");
+            ViewBag.head = Helper.getDicData(listSection, "section_welcome_head");
+            ViewBag.text = Helper.getDicData(listSection, "section_welcome_text");
 
             return View();
         }
+
+        public ActionResult AddressBackground(HttpPostedFileBase img)
+        {
+            if (Request.HttpMethod == "POST")
+            {
+                var parents = new List<string>()
+                {
+                    "Index_Page",
+                    "Index_Section_Address"
+                };
+                
+
+                var bimg = SaveImage(img);
+                if (bimg != null)
+                {
+                    SiteMetaDAO.SaveMeta(new Meta()
+                    {
+                        MetaName = "section_address_background_image",
+                        MetaText = bimg
+                    }, parents);
+                }
+            }
+
+            var listSection = SiteMetaDAO.getMetaChilds("Index_Section_Address");
+
+            ViewBag.img = Helper.getDicData(listSection, "section_address_background_image");
+
+            return View();
+        }
+
+
 
         public ActionResult Header(List<MainPageSection> list)
         {
@@ -167,27 +198,27 @@ namespace Admin.Controllers
                 }
             }
 
-            var listSection = DAOLayer.SiteMetaDAO.getMetaChilds("Index_Section_1");
+            var listSection = SiteMetaDAO.getMetaChilds("Index_Section_1");
 
-            ViewBag.img1 = CustomModels.Helper.getDicData(listSection, "section_1_1_img");
-            ViewBag.head1 = CustomModels.Helper.getDicData(listSection, "section_1_1_head");
-            ViewBag.text1 = CustomModels.Helper.getDicData(listSection, "section_1_1_text");
+            ViewBag.img1 = Helper.getDicData(listSection, "section_1_1_img");
+            ViewBag.head1 = Helper.getDicData(listSection, "section_1_1_head");
+            ViewBag.text1 = Helper.getDicData(listSection, "section_1_1_text");
 
-            ViewBag.img2 = CustomModels.Helper.getDicData(listSection, "section_1_2_img");
-            ViewBag.head2 = CustomModels.Helper.getDicData(listSection, "section_1_2_head");
-            ViewBag.text2 = CustomModels.Helper.getDicData(listSection, "section_1_2_text");
+            ViewBag.img2 = Helper.getDicData(listSection, "section_1_2_img");
+            ViewBag.head2 = Helper.getDicData(listSection, "section_1_2_head");
+            ViewBag.text2 = Helper.getDicData(listSection, "section_1_2_text");
 
-            ViewBag.img3 = CustomModels.Helper.getDicData(listSection, "section_1_3_img");
-            ViewBag.head3 = CustomModels.Helper.getDicData(listSection, "section_1_3_head");
-            ViewBag.text3 = CustomModels.Helper.getDicData(listSection, "section_1_3_text");
+            ViewBag.img3 = Helper.getDicData(listSection, "section_1_3_img");
+            ViewBag.head3 = Helper.getDicData(listSection, "section_1_3_head");
+            ViewBag.text3 = Helper.getDicData(listSection, "section_1_3_text");
 
-            ViewBag.img4 = CustomModels.Helper.getDicData(listSection, "section_1_4_img");
-            ViewBag.head4 = CustomModels.Helper.getDicData(listSection, "section_1_4_head");
-            ViewBag.text4 = CustomModels.Helper.getDicData(listSection, "section_1_4_text");
+            ViewBag.img4 = Helper.getDicData(listSection, "section_1_4_img");
+            ViewBag.head4 = Helper.getDicData(listSection, "section_1_4_head");
+            ViewBag.text4 = Helper.getDicData(listSection, "section_1_4_text");
 
-            ViewBag.img5 = CustomModels.Helper.getDicData(listSection, "section_1_5_img");
-            ViewBag.head5 = CustomModels.Helper.getDicData(listSection, "section_1_5_head");
-            ViewBag.text5 = CustomModels.Helper.getDicData(listSection, "section_1_5_text");
+            ViewBag.img5 = Helper.getDicData(listSection, "section_1_5_img");
+            ViewBag.head5 = Helper.getDicData(listSection, "section_1_5_head");
+            ViewBag.text5 = Helper.getDicData(listSection, "section_1_5_text");
 
             return View();
         }

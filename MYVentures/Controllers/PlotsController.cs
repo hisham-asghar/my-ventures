@@ -15,7 +15,7 @@ namespace MYVentures.Controllers
 
         public ActionResult Index(string search, int smin = 0, int smax = 0)
         {
-            var list = PropertyDao.GetPropertiesList(3);
+            var list = PropertyDao.GetPropertiesListActive(3);
             ViewBag.propertyTypeTags = PropertyDao.GetPropertyTypes(3);
             var max = Math.Floor(PropertyDao.GetPriceMax(3));
             ViewBag.PriceMax = max;
